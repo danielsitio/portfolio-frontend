@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: "https://superb-bat-production.up.railway.app"
+    apiUrl: "https://humdrum-fork-production.up.railway.app"
 };

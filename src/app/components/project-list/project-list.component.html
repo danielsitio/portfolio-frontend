@@ -1,0 +1,10 @@
+<ng-container *ngIf="$projects; else cargando ">
+    <div *ngFor="let project of $projects|async">
+        <h1>{{project.name}}</h1>
+        <p>{{project.description}}</p>
+    </div>
+    <button (click)="addProject()">avv</button>
+</ng-container>
+<ng-template #cargando>
+    <h1>cargando</h1>
+</ng-template>

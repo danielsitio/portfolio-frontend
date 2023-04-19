@@ -1,9 +1,8 @@
 <ng-container *ngIf="$projects; else cargando ">
     <div *ngFor="let project of $projects|async">
-        <h1>{{project.name}}</h1>
-        <p>{{project.description}}</p>
+        <app-project [project]="project" (projectDeletedEvent)="getProjects()"></app-project>
     </div>
-    <button (click)="addProject()">avv</button>
+    <button (click)="addProject()">añadir Projecto</button>
 </ng-container>
 <ng-template #cargando>
     <h1>cargando</h1>

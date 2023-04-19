@@ -14,4 +14,6 @@ export class ProjectService {
   getAll = (): Observable<Project[]> => this.http.get<Project[]>(`${environment.apiUrl}/project/getAll`)
 
   add = (newProject: Project): Observable<Project> => this.http.post<Project>(`${environment.apiUrl}/project/add`, newProject)
+
+  delete = (projectId: number) => this.http.delete(`${environment.apiUrl}/project/delete?projectId=${projectId}`)
 }

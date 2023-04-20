@@ -17,7 +17,7 @@ export class ProjectComponent {
 
 
 
-  delete = () => this.projectService.delete(1).subscribe(() => this.projectDeletedEvent.emit())
+  delete = () => this.projectService.delete(this.project.id).subscribe(() => this.projectDeletedEvent.emit())
   edit = () => this.projectService
 
 }

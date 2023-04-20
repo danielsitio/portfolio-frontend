@@ -23,6 +23,6 @@ export class ProjectListComponent implements OnInit {
     this.$projects = this.projectService.getAll()
   }
 
-  addProject = () => this.projectService.add({ name: "nuevo", description: "desc enviada" }).subscribe(p => this.getProjects())
+  openProjectForm = () => { }
 
 }

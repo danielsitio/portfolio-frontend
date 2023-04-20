@@ -2,8 +2,12 @@
     <div *ngFor="let project of $projects|async">
         <app-project [project]="project" (projectDeletedEvent)="getProjects()"></app-project>
     </div>
-    <button (click)="addProject()">añadir Projecto</button>
+    <button (click)="openProjectForm()">añadir Projecto</button>
+    <app-project-form (projectAddedEvent)="getProjects()"></app-project-form>
 </ng-container>
 <ng-template #cargando>
     <h1>cargando</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda velit officiis vitae. Eaque expedita
+        laudantium sunt exercitationem provident ipsa ratione, earum deserunt reprehenderit, pariatur reiciendis sint
+        est labore in accusamus!</p>
 </ng-template>

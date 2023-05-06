@@ -1,1 +1,7 @@
-<app-project-list></app-project-list>
+<div>
+    <img *ngIf="($profilePicture | async) != null ;else noPicture" [src]="$profilePicture | async" class="pfp">
+    <input type="file" accept="image/jpeg, image/png" (change)="uploadProfilePicture($event)">
+</div>
+<ng-template #noPicture>
+    <p>no hay foto</p>
+</ng-template>

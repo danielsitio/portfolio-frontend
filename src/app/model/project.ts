@@ -1,6 +1,10 @@
+import { HalResource } from "./hal"
+
 export type Project = {
-    id: number
     name: string
     description: string
+    realizationDate: string
+    link?: string
 }
-export type ProjectInput = Omit<Project, "id">
+
+export type HalProject = Project & HalResource

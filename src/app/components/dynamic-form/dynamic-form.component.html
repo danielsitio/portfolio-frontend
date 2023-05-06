@@ -1,0 +1,5 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form">
+    <app-dynamic-form-question *ngFor="let question of questions" [form]="form"
+        [question]="question"></app-dynamic-form-question>
+    <button type="submit" [disabled]="!form.valid">Guardar</button>
+</form>

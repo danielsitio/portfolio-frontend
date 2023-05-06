@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/model/project';
+import { Question } from 'src/app/model/question';
+import { HalProject, Project } from 'src/app/model/project';
 import { ProjectService } from 'src/app/services/project.service';
+import { newProjectQuestions } from 'src/assets/project-forms';
 
 @Component({
   selector: 'app-project-list',
@@ -11,18 +13,29 @@ import { ProjectService } from 'src/app/services/project.service';
 export class ProjectListComponent implements OnInit {
 
 
-  $projects: Observable<Project[]> | undefined
+  $projects: Observable<HalProject[]> | undefined
+
+  newProjectQuestions: Question[] = newProjectQuestions
+
+  showProjectForm: boolean = false
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    this.getProjects()
+    this.updateProjects()
   }
 
-  getProjects() {
-    this.$projects = this.projectService.getAll()
+  updateProjects = () => this.$projects = this.projectService.getAll()
+
+  openProjectForm = () => this.showProjectForm = true
+
+  closeProjectForm = () => this.showProjectForm = false
+
+  closeFormAndUpdate = () => {
+    this.closeProjectForm()
+    this.updateProjects()
   }
 
-  openProjectForm = () => { }
+  addProject = (newProject: Project) => this.projectService.add(newProject).subscribe(this.closeFormAndUpdate)
 
 }

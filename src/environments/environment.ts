@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: "https://humdrum-fork-production.up.railway.app"
+    apiUrl: "https://danest-backend.up.railway.app/api"
 };

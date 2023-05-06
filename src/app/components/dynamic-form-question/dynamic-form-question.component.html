@@ -1,0 +1,5 @@
+<div [formGroup]="form">
+    <label [attr.for]="question.key">{{question.label}}</label>
+    <input [formControlName]="question.key" [id]="question.key" [type]="question.type">
+    <div *ngIf="!isValid">Se requiere {{question.label}}.</div>
+</div>

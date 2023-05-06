@@ -7,8 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { ProjectComponent } from './components/project/project.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-import { ProjectFormComponent } from './components/project-form/project-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './components/dynamic-form-question/dynamic-form-question.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,16 @@ import { FormsModule } from '@angular/forms';
     ProjectListComponent,
     ProjectComponent,
     LoginFormComponent,
-    ProjectFormComponent,
+    DynamicFormComponent,
+    DynamicFormQuestionComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

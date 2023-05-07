@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './components/dynamic-form-question/dynamic-form-question.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { NgLetModule } from 'ng-let'
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { ModalComponent } from './components/modal/modal.component';
     DynamicFormComponent,
     DynamicFormQuestionComponent,
     ModalComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgLetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

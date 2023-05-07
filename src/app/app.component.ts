@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   uploadProfilePicture({ target }: Event) {
     const profilePicture: File = (<HTMLInputElement>target).files![0]
     this.profileService.uloadProfilePicture(profilePicture).subscribe(this.updateProfilePicture)
+
   }
 
 }

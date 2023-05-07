@@ -40,3 +40,13 @@ export const newProjectQuestions: Question[] = [
         type: InputType.FILE
     }
 ]
+export const profileDescriptionQuestions: Question[] = [
+    {
+        key: "description",
+        value: "",
+        label: "Descripcion",
+        required: true,
+        order: 1,
+        type: InputType.TEXT
+    }
+]

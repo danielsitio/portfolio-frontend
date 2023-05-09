@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Profile } from 'src/app/model/profile';
 import { ProfileService } from 'src/app/services/profile.service';
-import { profileDescriptionQuestions } from 'src/assets/project-forms';
+import { basicProfileQuestions, profileDescriptionQuestions } from 'src/assets/project-forms';
 
 @Component({
   selector: 'app-profile',
@@ -13,8 +13,10 @@ export class ProfileComponent implements OnInit {
   $profile?: Observable<Profile>
 
   profileDescriptionQuestions = profileDescriptionQuestions;
+  basicProfileQuestions = basicProfileQuestions;
 
-  showForm: boolean = false
+  showDescriptionForm: boolean = false
+  showBasicProfileForm: boolean = false
 
   constructor(private profileService: ProfileService) { }
 
@@ -24,19 +26,32 @@ export class ProfileComponent implements OnInit {
 
   refreshProfile = () => this.$profile = this.profileService.getProfile()
 
-  openForm = () => this.showForm = true
-  closeForm = () => this.showForm = false
+  openDescriptionForm = () => this.showDescriptionForm = true
+  closeDescriptionForm = () => this.showDescriptionForm = false
 
-  closeFormAndRefresh = () => {
-    this.closeForm()
+  openBasicProfileForm = () => this.showBasicProfileForm = true
+  closeBasicProfileForm = () => this.showBasicProfileForm = false
+
+  closeAllFormsAndRefresh = () => {
+    this.closeAllForms()
     this.refreshProfile()
   }
 
-  editProfile = (partialProfile: Partial<Profile>) => this.profileService.patchProfile(partialProfile).subscribe(this.closeFormAndRefresh)
+  closeAllForms = () => {
+    this.closeBasicProfileForm()
+    this.closeDescriptionForm()
+  }
+
+  editProfile = (partialProfile: Partial<Profile>) => this.profileService.patchProfile(partialProfile).subscribe(this.closeAllFormsAndRefresh)
 
   uploadBannerImage({ target }: Event) {
     const file: File = (<HTMLInputElement>target).files![0]
     this.profileService.uploadBannerImage(file).subscribe(this.refreshProfile)
+    /* this.profileService.test({ image: file }).subscribe(() => console.log("se envio correctamente")) */
+  }
+  uploadProfilePicture({ target }: Event) {
+    const file: File = (<HTMLInputElement>target).files![0]
+    this.profileService.uloadProfilePicture(file).subscribe(this.refreshProfile)
   }
 
 }

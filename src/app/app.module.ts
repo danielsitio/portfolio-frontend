@@ -12,7 +12,12 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
 import { DynamicFormQuestionComponent } from './components/dynamic-form-question/dynamic-form-question.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { NgLetModule } from 'ng-let'
+import { NgLetModule } from 'ng-let';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatIconModule } from '@angular/material/icon';
+import { EditButtonComponent } from './components/edit-button/edit-button.component'
+
+
 
 @NgModule({
   declarations: [
@@ -24,6 +29,7 @@ import { NgLetModule } from 'ng-let'
     DynamicFormQuestionComponent,
     ModalComponent,
     ProfileComponent,
+    EditButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +37,9 @@ import { NgLetModule } from 'ng-let'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgLetModule
+    NgLetModule,
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

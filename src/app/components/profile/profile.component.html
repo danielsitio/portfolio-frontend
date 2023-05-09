@@ -1,26 +1,52 @@
 <ng-container *ngLet="$profile | async as profile">
     <div *ngIf="profile;else loader" class="profile-container">
         <div class="banner-container">
+
             <img [src]="profile.bannerImage ? profile.bannerImage.url : '/assets/no-image.png'" alt="image"
                 class="banner-image">
-            <input type="file" accept="image/jpeg, image/png" (change)="uploadBannerImage($event)" class="banner-edit">
+
+            <input id="banner-input" type="file" accept="image/jpeg, image/png" (change)="uploadBannerImage($event)"
+                style="display: none;">
+            <label class="banner-edit edit-button" for="banner-input"><mat-icon>edit</mat-icon></label>
 
         </div>
-        <div class="main-profile-container">
-            <img [src]="profile.image ? profile.image.url : '/assets/no-image.png' " class="profile-image" alt="image">
-            <p>{{profile.name | titlecase}} {{profile.lastName | titlecase}}</p>
-            <p>{{profile.title}}</p>
-        </div>
-        <div class="profile-description-container">
-            <p>{{profile.description}}</p>
-            <button (click)="openForm()">editar</button>
-            <app-modal *ngIf="showForm" (click)="closeForm()">
-                <app-dynamic-form (click)="$event.stopPropagation()" [questions]="profileDescriptionQuestions"
-                    [onSubmit]="editProfile"></app-dynamic-form>
-            </app-modal>
+
+        <div class="profile-container-container">
+            <div class="profile-details-container">
+                <div class="profile-picture-container">
+                    <img [src]="profile.picture ? profile.picture.url : '/assets/no-image.png' " class="profile-image"
+                        alt="image">
+                    <input id="profile-picture-input" type="file" accept="image/jpeg, image/png"
+                        (change)="uploadProfilePicture($event)" style="display: none;">
+                    <label class="profile-picture-edit edit-button"
+                        for="profile-picture-input"><mat-icon>edit</mat-icon></label>
+                </div>
+                <div class="profile-basic-details-container">
+                    <p>{{profile.name | titlecase}} {{profile.lastName | titlecase}}</p>
+                    <p>{{profile.title |titlecase}}</p>
+                    <button (click)="openBasicProfileForm()"
+                        class="profile-basic-details-edit edit-button"><mat-icon>edit</mat-icon></button>
+                </div>
+            </div>
+            <div class="profile-description-container">
+                <button (click)="openDescriptionForm()"
+                    class="description-edit edit-button"><mat-icon>edit</mat-icon></button>
+                <p>{{profile.description}}</p>
+
+            </div>
         </div>
     </div>
 </ng-container>
+
+<app-modal *ngIf="showDescriptionForm" (click)="closeDescriptionForm()">
+    <app-dynamic-form (click)="$event.stopPropagation()" [questions]="profileDescriptionQuestions"
+        [onSubmit]="editProfile"></app-dynamic-form>
+</app-modal>
+<app-modal *ngIf="showBasicProfileForm" (click)="closeBasicProfileForm()">
+    <app-dynamic-form (click)="$event.stopPropagation()" [questions]="basicProfileQuestions"
+        [onSubmit]="editProfile"></app-dynamic-form>
+</app-modal>
+
 <ng-template #loader>
     <p>cargando...</p>
 </ng-template>

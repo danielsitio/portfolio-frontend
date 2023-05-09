@@ -40,6 +40,33 @@ export const newProjectQuestions: Question[] = [
         type: InputType.FILE
     }
 ]
+
+export const basicProfileQuestions: Question[] = [
+    {
+        key: "name",
+        value: "",
+        label: "Nombre",
+        required: true,
+        order: 1,
+        type: InputType.TEXT
+    },
+    {
+        key: "lastName",
+        value: "",
+        label: "Apellido",
+        required: true,
+        order: 2,
+        type: InputType.TEXT
+    },
+    {
+        key: "title",
+        value: "",
+        label: "Título",
+        required: true,
+        order: 3,
+        type: InputType.TEXT
+    }
+]
 export const profileDescriptionQuestions: Question[] = [
     {
         key: "description",
@@ -47,6 +74,6 @@ export const profileDescriptionQuestions: Question[] = [
         label: "Descripcion",
         required: true,
         order: 1,
-        type: InputType.TEXT
+        type: InputType.LARGE_TEXT
     }
 ]

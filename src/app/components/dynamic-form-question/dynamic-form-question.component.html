@@ -1,5 +1,11 @@
 <div [formGroup]="form">
     <label [attr.for]="question.key">{{question.label}}</label>
-    <input [formControlName]="question.key" [id]="question.key" [type]="question.type">
+    <br>
+    <ng-container [ngSwitch]="question.type">
+        <textarea *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key"
+            style="resize: none;">output</textarea>
+        <input *ngSwitchDefault [formControlName]="question.key" [id]="question.key" [type]="question.type">
+    </ng-container>
+
     <div *ngIf="!isValid">Se requiere {{question.label}}.</div>
 </div>

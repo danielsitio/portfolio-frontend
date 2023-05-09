@@ -9,9 +9,12 @@
 
 .banner-edit {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: .5rem;
+    right: 1rem;
+    width: 2rem;
+
 }
+
 
 .banner-image {
     width: 100%;
@@ -20,20 +23,72 @@
     object-position: 50% 50%;
 }
 
+.profile-container-container {
+    display: flex;
+    gap: 2rem;
+}
 
-.main-profile-container {
+.profile-details-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    margin-top: -3.5rem;
 }
 
-.profile-description-container {
-    padding: 0 50px;
+.profile-picture-container {
+    position: relative;
 }
 
 .profile-image {
-    width: 100px;
+    width: 7rem;
     aspect-ratio: 1/1;
     border-radius: 99999px;
+    object-fit: cover;
+}
+
+.profile-picture-edit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.profile-basic-details-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+.profile-basic-details-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+}
+
+.profile-description-container {
+    width: 100%;
+}
+
+
+.description-edit {
+    margin-left: auto;
+    border: none;
+}
+
+.edit-button {
+    width: 1.5rem;
+    aspect-ratio: 1/1;
+    background-color: greenyellow;
+    border-radius: 9999px;
+    display: grid;
+    place-content: center;
+}
+
+.edit-button:hover {
+    cursor: pointer;
 }

@@ -4,7 +4,7 @@ export type Profile = {
     title: string
     description: string
     bannerImage?: Image
-    image?: Image
+    picture?: Image
 }
 type Image = {
     url: string

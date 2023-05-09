@@ -31,4 +31,5 @@ export class ProfileService {
 
   getProfilePicture = (): Observable<string | undefined> => this.http.get(`${this.apiUrl}/picture`, { responseType: "text" })
 
+  test = (something: { image: File }) => this.http.post(`${this.apiUrl}/test`, something)
 }

@@ -3,6 +3,7 @@ export type Question = {
     key: string;
     label: string;
     required: boolean;
+    maxLenght?: number
     order: number;
     type: InputType;
     controlType?: string;

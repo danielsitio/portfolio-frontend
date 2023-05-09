@@ -1,8 +1,16 @@
-import { HalResource } from "./hal"
-
 export type Education = {
-    institute: string
-    degree: string
+    institute: string,
+    title: string,
+    startDate: string,
+    finishDate: string,
+    logo?: string
 }
-export type HalEducation = Education & HalResource
+
+export type EducationForm = {
+    institute: string,
+    title: string,
+    startDate: string,
+    finishDate: string,
+    logo?: File
+}
 

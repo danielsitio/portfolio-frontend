@@ -4,6 +4,7 @@
     <ng-container [ngSwitch]="question.type">
         <textarea *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key"
             style="resize: none;">output</textarea>
+        <app-file-input *ngSwitchCase="'file'" [formControlName]="question.key" [id]="question.key"></app-file-input>
         <input *ngSwitchDefault [formControlName]="question.key" [id]="question.key" [type]="question.type">
     </ng-container>
 

@@ -15,7 +15,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NgLetModule } from 'ng-let';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatIconModule } from '@angular/material/icon';
-import { EditButtonComponent } from './components/edit-button/edit-button.component'
+import { EditButtonComponent } from './components/edit-button/edit-button.component';
+import { EducationListComponent } from './components/education-list/education-list.component';
+import { FileInputComponent } from './components/file-input/file-input.component'
 
 
 
@@ -30,6 +32,8 @@ import { EditButtonComponent } from './components/edit-button/edit-button.compon
     ModalComponent,
     ProfileComponent,
     EditButtonComponent,
+    EducationListComponent,
+    FileInputComponent,
   ],
   imports: [
     BrowserModule,

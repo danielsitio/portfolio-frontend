@@ -1,0 +1,14 @@
+<button (click)="openEducationForm()">nuevo</button>
+<ng-container *ngLet="$educations | async as educations">
+    <div *ngIf="educations!.isLoading">Loading</div>
+    <div *ngIf="educations!.value">
+        los datos cargaron
+    </div>
+</ng-container>
+
+
+
+<app-modal *ngIf="showEducationForm" (click)="closeEducationForm()">
+    <app-dynamic-form [questions]="newEducationQuestions" [onSubmit]="addEducation"
+        (click)="$event.stopPropagation()"></app-dynamic-form>
+</app-modal>

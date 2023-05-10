@@ -35,7 +35,7 @@ export class EducationComponent {
   markAsBeingDeleted = () => this.isBeingDeleted = true
   markAsNotBeingDeleted = () => this.isBeingDeleted = false
 
-  delete() {
+  delete = () => {
     this.markAsBeingDeleted()
     this.educationService.deleteEducation(this.education!.id).subscribe((this.emitDeletedEvent))
   }

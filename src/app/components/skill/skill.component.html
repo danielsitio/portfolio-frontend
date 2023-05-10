@@ -1,0 +1,8 @@
+<div>
+    <p><mat-icon (click)="openForm()">edit</mat-icon><mat-icon (click)="delete()">close</mat-icon></p>
+    <p>{{skill.name}}</p>
+    <p>{{skill.level}}</p>
+</div>
+
+<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="update"
+    [onModalClick]="closeForm"></app-modal-form>

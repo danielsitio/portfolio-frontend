@@ -1,12 +1,10 @@
 <div>
+    <div><mat-icon (click)="openForm()">edit</mat-icon> <mat-icon (click)="delete()">delete</mat-icon></div>
     <p>{{project.name}}</p>
     <p>{{project.description}}</p>
     <p>{{project.realizationDate}}</p>
     <p *ngIf="project.link">{{project.link}}</p>
-    <button (click)="deleteProject()">borrar</button>
-    <button (click)="openProjectForm()">editar</button>
-    <app-modal *ngIf="showProjectForm" (click)="closeProjectForm()">
-        <app-dynamic-form [questions]="editProjectQuestions" (click)="$event.stopPropagation()"
-            [onSubmit]="editProject"></app-dynamic-form>
-    </app-modal>
+
 </div>
+
+<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="edit" [onModalClick]="closeForm"></app-modal-form>

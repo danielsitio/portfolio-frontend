@@ -117,3 +117,59 @@ export const newEducationQuestions: Question[] = [
     }
 
 ]
+export const skillQuestions: Question[] = [
+    {
+        key: "name",
+        label: "Nombre",
+        value: "",
+        order: 1,
+        required: true,
+        type: InputType.TEXT
+    },
+    {
+        key: "level",
+        label: "Nivel",
+        order: 2,
+        required: true,
+        type: InputType.NUMBER
+    }
+]
+export const experienceQuestions: Question[] = [
+    {
+        key: "position",
+        value: "",
+        label: "Puesto",
+        required: true,
+        order: 1,
+        type: InputType.TEXT
+    },
+    {
+        key: "description",
+        value: "",
+        label: "Descripcion de las tareas",
+        required: true,
+        order: 2,
+        type: InputType.LARGE_TEXT
+    },
+    {
+        key: "startDate",
+        label: "Fecha de inicio",
+        required: true,
+        order: 3,
+        type: InputType.DATE
+    },
+    {
+        key: "finishDate",
+        label: "Fecha de finalizacion",
+        required: true,
+        order: 4,
+        type: InputType.DATE
+    },
+    {
+        key: "logo",
+        label: "Logo",
+        required: false,
+        order: 5,
+        type: InputType.FILE
+    }
+]

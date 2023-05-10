@@ -19,7 +19,11 @@ import { EditButtonComponent } from './components/edit-button/edit-button.compon
 import { EducationListComponent } from './components/education-list/education-list.component';
 import { FileInputComponent } from './components/file-input/file-input.component';
 import { EducationComponent } from './components/education/education.component';
-import { ModalFormComponent } from './components/modal-form/modal-form.component'
+import { ModalFormComponent } from './components/modal-form/modal-form.component';
+import { SkillListComponent } from './components/skill-list/skill-list.component';
+import { SkillComponent } from './components/skill/skill.component';
+import { ExperienceListComponent } from './components/experience-list/experience-list.component';
+import { ExperienceComponent } from './components/experience/experience.component'
 
 
 
@@ -38,6 +42,10 @@ import { ModalFormComponent } from './components/modal-form/modal-form.component
     FileInputComponent,
     EducationComponent,
     ModalFormComponent,
+    SkillListComponent,
+    SkillComponent,
+    ExperienceListComponent,
+    ExperienceComponent,
   ],
   imports: [
     BrowserModule,

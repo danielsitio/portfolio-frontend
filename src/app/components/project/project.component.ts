@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Question } from 'src/app/model/question';
-import { HalProject, Project } from 'src/app/model/project';
+import { HalProject, Project, ProjectForm } from 'src/app/model/project';
 import { ProjectService } from 'src/app/services/project.service';
 import { newProjectQuestions } from 'src/assets/project-forms';
 
@@ -11,33 +11,43 @@ import { newProjectQuestions } from 'src/assets/project-forms';
 })
 export class ProjectComponent implements OnInit {
 
-  @Input() project!: HalProject
+  isBeingDeleted: boolean = false
 
-  @Output() changeInProjects: EventEmitter<void> = new EventEmitter<void>()
+  questions = newProjectQuestions
 
-  editProjectQuestions: Question[] = newProjectQuestions
+  @Input() project!: Project
+  @Output() deleted: EventEmitter<void> = new EventEmitter()
+  @Output() updated: EventEmitter<Project> = new EventEmitter()
 
-  showProjectForm: boolean = false
+  showForm: boolean = false
+
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    this.editProjectQuestions = this.editProjectQuestions.map(question => {
+    /* this.editProjectQuestions = this.editProjectQuestions.map(question => {
       return { ...question, value: question.key in this.project ? (this.project as any)[question.key] : "" }
-    })
+    }) */
   }
 
+  closeForm = () => this.showForm = false
+  openForm = () => this.showForm = true
 
-  emitChangeInProjects = () => this.changeInProjects.emit()
+  emitDeletedEvent = () => this.deleted.emit()
+  emitUpdateEvent = (updatedProject: Project) => this.updated.emit(updatedProject)
 
-  openProjectForm = () => this.showProjectForm = true
-
-  closeProjectForm = () => this.showProjectForm = false
-
-  closeProjectFormAndEmit = () => {
-    this.closeProjectForm()
-    this.emitChangeInProjects()
+  closeFormAndEmitUpdated = (updatedProject: Project) => {
+    this.emitUpdateEvent(updatedProject)
+    this.closeForm()
   }
-  editProject = (editedProject: Project) => this.projectService.edit({ ...this.project, ...editedProject }).subscribe(this.closeProjectFormAndEmit)
-  deleteProject = () => this.projectService.delete(this.project).subscribe(this.emitChangeInProjects)
+  markAsBeingDeleted = () => this.isBeingDeleted = true
+  markAsNotBeingDeleted = () => this.isBeingDeleted = false
+
+  delete = () => {
+    this.markAsBeingDeleted()
+    this.projectService.delete(this.project.id).subscribe((this.emitDeletedEvent))
+  }
+  edit = (partialEducation: Partial<ProjectForm>) => {
+    this.projectService.patch(this.project.id, partialEducation).subscribe(this.closeFormAndEmitUpdated)
+  }
 }

@@ -1,8 +1,10 @@
-<div *ngFor="let project of $projects|async">
-    <app-project [project]="project" (changeInProjects)="updateProjects()"></app-project>
+<div>
+    <h1>Projectos</h1>
+    <mat-icon (click)="openForm()">add</mat-icon>
+    <app-project *ngFor="let project of projects" [project]="project" (deleted)="delete(project)"
+        (updated)="update($event)"></app-project>
 </div>
-<button (click)="openProjectForm()">añadir Projecto</button>
-<app-modal *ngIf="showProjectForm" (click)="closeProjectForm()">
-    <app-dynamic-form [questions]="newProjectQuestions" [onSubmit]="addProject"
-        (click)="$event.stopPropagation()"></app-dynamic-form>
-</app-modal>
+
+
+
+<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="add" [onModalClick]="closeForm"></app-modal-form>

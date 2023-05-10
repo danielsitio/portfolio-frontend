@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HalProject, Project } from '../model/project';
+import { HalProject, Project, ProjectForm } from '../model/project';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -15,12 +15,17 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-  getAll = (): Observable<HalProject[]> => this.http.get<any>(`${this.projectApi}`).pipe(map(res => res._embedded.projects as HalProject[]))
+  getAll = (): Observable<Project[]> => this.http.get<Project[]>(this.projectApi)
 
-  add = (newProject: Project): Observable<HalProject> => this.http.post<HalProject>(`${this.projectApi}`, newProject)
+  post = (newProject: ProjectForm): Observable<Project> => {
+    const formData = new FormData()
+    if (newProject.image) formData.append("image", newProject.image)
+    formData.append("project", new Blob([JSON.stringify(newProject as Project)], { type: "application/json" }))
+    return this.http.post<Project>(this.projectApi, formData)
+  }
 
-  edit = (editedProject: HalProject): Observable<void> => this.http.put<void>(editedProject._links.self.href, editedProject as Project)
+  patch = (id: number, partialProject: Partial<ProjectForm>): Observable<Project> => this.http.patch<Project>(`${this.projectApi}/${id}`, partialProject)
 
-  delete = (projectToDelete: HalProject) => this.http.delete<void>(projectToDelete._links.self.href)
+  delete = (id: number) => this.http.delete(`${this.projectApi}/${id}`)
 
 }

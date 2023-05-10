@@ -37,10 +37,6 @@ export class EducationListComponent implements OnInit {
       this.closeEducationForm()
     })
   }
-  deleteEducation = (educationToRemove: Education) => {
-    this.educations = this.educations?.filter(education => education.id != educationToRemove.id)
-  }
-  updateEducation = (updatedEducation: Education) => {
-    this.educations = this.educations?.map(education => education.id === updatedEducation.id ? updatedEducation : education)
-  }
+  deleteEducation = (educationToRemove: Education) => this.educations = this.educations?.filter(education => education.id != educationToRemove.id)
+  updateEducation = (updatedEducation: Education) => this.educations = this.educations?.map(education => education.id === updatedEducation.id ? updatedEducation : education)
 }

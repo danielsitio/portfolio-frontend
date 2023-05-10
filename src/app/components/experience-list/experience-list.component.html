@@ -1,0 +1,7 @@
+<h1>Experiencias Laborales</h1>
+<mat-icon (click)="openForm()">add</mat-icon>
+<app-experience *ngFor="let experience of experiences" [experience]="experience"
+    (deleted)="deleteExperience(experience)" (updated)="updateExperience($event)"></app-experience>
+
+<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="addExperience"
+    [onModalClick]="closeForm"></app-modal-form>

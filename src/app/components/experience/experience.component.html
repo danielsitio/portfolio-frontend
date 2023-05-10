@@ -1,0 +1,8 @@
+<div>
+    <div><mat-icon (click)="openForm()">edit</mat-icon><mat-icon (click)="delete()">close</mat-icon></div>
+    <p>{{experience.position}}</p>
+    <p>{{experience.startDate | date}} - {{experience.finishDate | date}}</p>
+    <p>{{experience.description}}</p>
+</div>
+
+<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="edit" [onModalClick]="closeForm"></app-modal-form>

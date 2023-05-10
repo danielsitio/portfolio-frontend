@@ -13,10 +13,10 @@ export class EducationService {
   constructor(private http: HttpClient) { }
 
   addEducation = (newEducation: EducationForm): Observable<Education> => {
-    const a = new FormData()
-    a.append("logo", newEducation.logo!)
-    a.append("education", new Blob([JSON.stringify(newEducation as Education)], { type: "application/json" }))
-    return this.http.post<Education>(this.educationApi, a)
+    const formData = new FormData()
+    if (newEducation.logo) formData.append("logo", newEducation.logo)
+    formData.append("education", new Blob([JSON.stringify(newEducation as Education)], { type: "application/json" }))
+    return this.http.post<Education>(this.educationApi, formData)
   }
   getEducations = (): Observable<Education[]> => this.http.get<Education[]>(this.educationApi)
 

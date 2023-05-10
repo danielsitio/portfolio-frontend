@@ -14,6 +14,7 @@ export enum InputType {
     DATE = "date",
     TEXT = "text",
     LARGE_TEXT = "textarea",
-    FILE = "file"
+    FILE = "file",
+    NUMBER = "number"
 }
 

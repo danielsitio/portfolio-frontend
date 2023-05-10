@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Question } from 'src/app/model/question';
-import { HalProject, Project } from 'src/app/model/project';
+import { Project, ProjectForm } from 'src/app/model/project';
 import { ProjectService } from 'src/app/services/project.service';
 import { newProjectQuestions } from 'src/assets/project-forms';
 
@@ -11,31 +10,33 @@ import { newProjectQuestions } from 'src/assets/project-forms';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
+  loading: boolean = false
+  projects?: Project[]
+  questions = newProjectQuestions
+  showForm: boolean = false
+  constructor(private projectService: ProjectService) {
 
-
-  $projects: Observable<HalProject[]> | undefined
-
-  newProjectQuestions: Question[] = newProjectQuestions
-
-  showProjectForm: boolean = false
-
-  constructor(private projectService: ProjectService) { }
-
+  }
   ngOnInit(): void {
-    this.updateProjects()
+    this.markAsLoading()
+    this.projectService.getAll().subscribe(projects => {
+      this.projects = projects
+      this.markAsNotLoading()
+    })
   }
+  markAsLoading = () => this.loading = true
+  markAsNotLoading = () => this.loading = false
 
-  updateProjects = () => this.$projects = this.projectService.getAll()
+  openForm = () => this.showForm = true
+  closeForm = () => this.showForm = false
 
-  openProjectForm = () => this.showProjectForm = true
-
-  closeProjectForm = () => this.showProjectForm = false
-
-  closeFormAndUpdate = () => {
-    this.closeProjectForm()
-    this.updateProjects()
+  add = (newProject: ProjectForm) => {
+    this.projectService.post(newProject).subscribe(project => {
+      this.projects = [...this.projects!, project]
+      this.closeForm()
+    })
   }
-
-  addProject = (newProject: Project) => this.projectService.add(newProject).subscribe(this.closeFormAndUpdate)
+  delete = (projectToRemove: Project) => this.projects = this.projects?.filter(project => project.id != projectToRemove.id)
+  update = (updatedProject: Project) => this.projects = this.projects?.map(project => project.id === updatedProject.id ? updatedProject : project)
 
 }

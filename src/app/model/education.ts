@@ -1,4 +1,5 @@
 export type Education = {
+    id: number
     institute: string,
     title: string,
     startDate: string,

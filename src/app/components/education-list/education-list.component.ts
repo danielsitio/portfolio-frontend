@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Education, EducationForm } from 'src/app/model/education';
 import { EducationService } from 'src/app/services/education.service';
 import { newEducationQuestions } from 'src/assets/project-forms';
-import { HttpRequestState } from 'ngx-http-request-state'
 
 
 @Component({
@@ -12,26 +10,37 @@ import { HttpRequestState } from 'ngx-http-request-state'
   styleUrls: ['./education-list.component.css']
 })
 export class EducationListComponent implements OnInit {
+
+  educationsAreLoading: boolean = false
+  educations?: Education[]
   newEducationQuestions = newEducationQuestions
-  $educations?: Observable<HttpRequestState<Education[]>>
   showEducationForm: boolean = false
   constructor(private educationService: EducationService) {
 
   }
   ngOnInit(): void {
-    this.updateEducations()
+    this.markEducationsAsLoading()
+    this.educationService.getEducations().subscribe(educations => {
+      this.educations = educations
+      this.markEducationsAsNotLoading()
+    })
   }
-
-  updateEducations = () => this.$educations = this.educationService.getEducations()
-  closeEducationFormAndUpdate = () => {
-    this.closeEducationForm()
-    this.updateEducations()
-  }
+  markEducationsAsLoading = () => this.educationsAreLoading = true
+  markEducationsAsNotLoading = () => this.educationsAreLoading = false
 
   openEducationForm = () => this.showEducationForm = true
   closeEducationForm = () => this.showEducationForm = false
 
   addEducation = (newEducation: EducationForm) => {
-    this.educationService.addEducation(newEducation).subscribe(this.closeEducationFormAndUpdate)
+    this.educationService.addEducation(newEducation).subscribe(education => {
+      this.educations = [...this.educations!, education]
+      this.closeEducationForm()
+    })
+  }
+  deleteEducation = (educationToRemove: Education) => {
+    this.educations = this.educations?.filter(education => education.id != educationToRemove.id)
+  }
+  updateEducation = (updatedEducation: Education) => {
+    this.educations = this.educations?.map(education => education.id === updatedEducation.id ? updatedEducation : education)
   }
 }

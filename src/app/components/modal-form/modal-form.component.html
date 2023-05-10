@@ -1,0 +1,4 @@
+<app-modal (click)="onModalClick()">
+    <app-dynamic-form [questions]="questions" [onSubmit]="onSubmit"
+        (click)="$event.stopPropagation()"></app-dynamic-form>
+</app-modal>

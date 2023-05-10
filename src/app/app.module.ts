@@ -17,7 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatIconModule } from '@angular/material/icon';
 import { EditButtonComponent } from './components/edit-button/edit-button.component';
 import { EducationListComponent } from './components/education-list/education-list.component';
-import { FileInputComponent } from './components/file-input/file-input.component'
+import { FileInputComponent } from './components/file-input/file-input.component';
+import { EducationComponent } from './components/education/education.component';
+import { ModalFormComponent } from './components/modal-form/modal-form.component'
 
 
 
@@ -34,6 +36,8 @@ import { FileInputComponent } from './components/file-input/file-input.component
     EditButtonComponent,
     EducationListComponent,
     FileInputComponent,
+    EducationComponent,
+    ModalFormComponent,
   ],
   imports: [
     BrowserModule,

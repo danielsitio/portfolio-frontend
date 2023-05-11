@@ -1,5 +1,8 @@
 <div>
-    <div><mat-icon (click)="openForm()">edit</mat-icon><mat-icon (click)="delete()">close</mat-icon></div>
+    <div *ngIf="isEditable">
+        <mat-icon (click)="openForm()">edit</mat-icon>
+        <mat-icon (click)="delete()">close</mat-icon>
+    </div>
     <div>
         <h3>Empresa</h3>
         <p>{{experience.workplace.name}}</p>

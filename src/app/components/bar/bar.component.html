@@ -1,0 +1,8 @@
+<div class="bar">
+    <div (click)="navHome()">logo</div>
+    <button (click)="openForm()">login</button>
+</div>
+
+<app-modal-form *ngIf="showForm" [questions]="[]" [onModalClick]="closeForm" [onSubmit]="login">
+
+</app-modal-form>

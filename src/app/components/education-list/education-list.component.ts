@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Education, EducationForm } from 'src/app/model/education';
 import { EducationService } from 'src/app/services/education.service';
 import { newEducationQuestions } from 'src/assets/project-forms';
@@ -11,12 +12,13 @@ import { newEducationQuestions } from 'src/assets/project-forms';
 })
 export class EducationListComponent implements OnInit {
 
+  @Input() isEditable: boolean = false
+
   educationsAreLoading: boolean = false
   educations?: Education[]
   newEducationQuestions = newEducationQuestions
   showEducationForm: boolean = false
   constructor(private educationService: EducationService) {
-
   }
   ngOnInit(): void {
     this.markEducationsAsLoading()

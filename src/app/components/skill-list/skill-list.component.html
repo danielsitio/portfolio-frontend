@@ -1,5 +1,5 @@
 <h1>Habilidades</h1>
-<mat-icon (click)="openForm()">add</mat-icon>
+<mat-icon (click)="openForm()" *ngIf="isEditable">add</mat-icon>
 <div *ngFor="let skill of skills">
     <app-skill [skill]="skill" (updated)="updateSkill($event)" (deleted)="deleteSkill(skill)"></app-skill>
 </div>

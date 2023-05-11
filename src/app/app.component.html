@@ -1,12 +1,4 @@
-<!-- <input type="file" accept="image/jpeg, image/png" (change)="uploadProfilePicture($event)"> -->
-
+<app-bar></app-bar>
 <div class="main-container">
-    <app-profile></app-profile>
-    <app-experience-list></app-experience-list>
-    <app-education-list></app-education-list>
-    <app-skill-list></app-skill-list>
-    <app-project-list></app-project-list>
+    <router-outlet></router-outlet>
 </div>
-<ng-template #noPicture>
-    <p>no hay foto</p>
-</ng-template>

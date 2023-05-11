@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Question } from 'src/app/model/question';
 import { Project, ProjectForm } from 'src/app/model/project';
 import { ProjectService } from 'src/app/services/project.service';
@@ -10,6 +10,7 @@ import { newProjectQuestions } from 'src/assets/project-forms';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
+  @Input() isEditable: boolean = false
   loading: boolean = false
   projects?: Project[]
   questions = newProjectQuestions

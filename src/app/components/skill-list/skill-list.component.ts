@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Question } from 'src/app/model/question';
 import { Skill } from 'src/app/model/skill';
 import { SkillService } from 'src/app/services/skill.service';
@@ -10,6 +10,7 @@ import { skillQuestions } from 'src/assets/project-forms';
   styleUrls: ['./skill-list.component.css']
 })
 export class SkillListComponent implements OnInit {
+  @Input() isEditable: boolean = false
 
   skills?: Skill[]
   skillsAreLoading: boolean = false

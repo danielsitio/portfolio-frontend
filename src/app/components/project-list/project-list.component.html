@@ -1,7 +1,7 @@
 <div>
     <h1>Projectos</h1>
-    <mat-icon (click)="openForm()">add</mat-icon>
-    <app-project *ngFor="let project of projects" [project]="project" (deleted)="delete(project)"
+    <mat-icon (click)="openForm()" *ngIf="isEditable">add</mat-icon>
+    <app-project *ngFor=" let project of projects" [project]="project" (deleted)="delete(project)"
         (updated)="update($event)"></app-project>
 </div>
 

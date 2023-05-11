@@ -10,6 +10,7 @@ import { newProjectQuestions } from 'src/assets/project-forms';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
+  @Input() isEditable: boolean = false
 
   isBeingDeleted: boolean = false
 

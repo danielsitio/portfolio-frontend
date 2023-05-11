@@ -15,21 +15,20 @@ export class ProfileService {
 
   getProfile = (): Observable<Profile> => this.http.get<Profile>(this.apiUrl)
 
-  patchProfile = (partialProfile: Partial<Profile>): Observable<void> => this.http.patch<void>(this.apiUrl, partialProfile)
+  patchProfile = (partialProfile: Partial<Profile>): Observable<Profile> => this.http.patch<Profile>(this.apiUrl, partialProfile)
 
-  uloadProfilePicture = (profilePicture: File): Observable<void> => {
+  uloadProfilePicture = (profilePicture: File): Observable<string> => {
     const formData = new FormData()
     formData.append("profilePicture", profilePicture, profilePicture.name)
-    return this.http.post<void>(`${this.apiUrl}/picture`, formData)
+    return this.http.post(`${this.apiUrl}/picture`, formData, { responseType: "text" })
   }
 
-  uploadBannerImage = (newBannerImage: File): Observable<void> => {
+  uploadBannerImage = (newBannerImage: File): Observable<string> => {
     const formData = new FormData()
-    formData.append("bannerImage", newBannerImage, newBannerImage.name)
-    return this.http.post<void>(`${this.apiUrl}/banner`, formData)
+    formData.append("banner", newBannerImage, newBannerImage.name)
+    return this.http.post(`${this.apiUrl}/banner`, formData, { responseType: "text" })
   }
 
-  getProfilePicture = (): Observable<string | undefined> => this.http.get(`${this.apiUrl}/picture`, { responseType: "text" })
+  getProfilePicture = (): Observable<string> => this.http.get(`${this.apiUrl}/picture`, { responseType: "text" })
 
-  test = (something: { image: File }) => this.http.post(`${this.apiUrl}/test`, something)
 }

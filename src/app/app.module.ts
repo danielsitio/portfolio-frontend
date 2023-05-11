@@ -23,7 +23,9 @@ import { ModalFormComponent } from './components/modal-form/modal-form.component
 import { SkillListComponent } from './components/skill-list/skill-list.component';
 import { SkillComponent } from './components/skill/skill.component';
 import { ExperienceListComponent } from './components/experience-list/experience-list.component';
-import { ExperienceComponent } from './components/experience/experience.component'
+import { ExperienceComponent } from './components/experience/experience.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { BarComponent } from './components/bar/bar.component'
 
 
 
@@ -46,6 +48,8 @@ import { ExperienceComponent } from './components/experience/experience.componen
     SkillComponent,
     ExperienceListComponent,
     ExperienceComponent,
+    MainPageComponent,
+    BarComponent,
   ],
   imports: [
     BrowserModule,

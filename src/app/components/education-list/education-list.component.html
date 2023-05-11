@@ -1,19 +1,9 @@
 <div style="display: flex; justify-content: space-between;">
-    <h1 style="width: fit-content; margin: 0;">Educaciones</h1><mat-icon (click)="openEducationForm()">add</mat-icon>
+    <h1 style="width: fit-content; margin: 0;">Educaciones</h1><mat-icon *ngIf="isEditable"
+        (click)="openEducationForm()">add</mat-icon>
 </div>
 <ng-container *ngIf="educationsAreLoading;then loading else notLoading ">
 </ng-container>
-<!-- <ng-container *ngLet="$educations | async as educations">
-    <div *ngIf="educations!.isLoading">Loading</div>
-    <div *ngIf="educations!.value">
-        <ng-container *ngIf="educations!.value.length!=0;else noEducations">
-            <app-education *ngFor="let education of educations!.value" [education]="education"
-                (educationChanges)="updateEducations()"></app-education>
-        </ng-container>
-
-    </div>
-</ng-container> -->
-
 
 <ng-template #loading>
     <div>Cargando educaciones</div>
@@ -21,7 +11,7 @@
 
 <ng-template #notLoading>
     <app-education *ngFor="let education of educations" [education]="education" (deleted)="deleteEducation(education)"
-        (updated)="updateEducation($event)">
+        (updated)="updateEducation($event)" [isEditable]="isEditable">
     </app-education>
     <div *ngIf="educations!.length==0">No hay educaciones</div>
 </ng-template>

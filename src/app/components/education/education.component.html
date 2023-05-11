@@ -1,6 +1,8 @@
 <div [ngClass]="{'deleted': isBeingDeleted}">
-    <div style="display: flex; justify-content: right;"><mat-icon (click)="openForm()">edit</mat-icon><mat-icon
-            (click)="delete()">close</mat-icon></div>
+    <div style="display: flex; justify-content: right;" *ngIf="isEditable">
+        <mat-icon (click)="openForm()">edit</mat-icon>
+        <mat-icon (click)="delete()">close</mat-icon>
+    </div>
     <div style="display: flex;">
         <div><img [src]="education.school.logo ? education.school.logo.url : '/assets/no-image.png'" alt="image"
                 style="width: 4rem;aspect-ratio: 1/1;">

@@ -10,6 +10,8 @@ import { newEducationQuestions } from 'src/assets/project-forms';
 })
 export class EducationComponent implements OnInit {
 
+  @Input() isEditable: boolean = false
+
   isBeingDeleted: boolean = false
 
   questions = newEducationQuestions

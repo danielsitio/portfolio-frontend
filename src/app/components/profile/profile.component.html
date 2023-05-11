@@ -1,42 +1,39 @@
-<ng-container *ngLet="$profile | async as profile">
-    <div *ngIf="profile;else loader" class="profile-container">
-        <div class="banner-container">
+<div *ngIf="profile;else loader" class="profile-container">
+    <div class="outline h-fit relative" [ngClass]="{'pointer-events-none blur-sm': bannerImageIsLoading}">
 
-            <img [src]="profile.bannerImage ? profile.bannerImage.url : '/assets/no-image.png'" alt="image"
-                class="banner-image">
+        <img [src]="profile.banner ? profile.banner.url : '/assets/no-image.png'" alt="image"
+            class="object-cover h-80 w-full">
 
-            <input id="banner-input" type="file" accept="image/jpeg, image/png" (change)="uploadBannerImage($event)"
-                style="display: none;">
-            <label class="banner-edit edit-button" for="banner-input"><mat-icon>edit</mat-icon></label>
+        <input id="banner-input" type="file" accept="image/jpeg, image/png" (change)="uploadBannerImage($event)"
+            style="display: none;">
+        <label *ngIf="isEditable" class="banner-edit edit-button" for="banner-input"><mat-icon>edit</mat-icon></label>
 
+    </div>
+
+    <div class="profile-container-container">
+        <div class="profile-details-container">
+            <div class="profile-picture-container" [ngClass]="{'pointer-events-none blur-sm': profilePictureIsLoading}">
+                <img [src]="profile.picture?.url" class="profile-image" alt="image">
+                <input id="profile-picture-input" type="file" accept="image/jpeg, image/png"
+                    (change)="uploadProfilePicture($event)" style="display: none;">
+                <label *ngIf="isEditable" class="profile-picture-edit edit-button"
+                    for="profile-picture-input"><mat-icon>edit</mat-icon></label>
+            </div>
+            <div class="profile-basic-details-container">
+                <p>{{profile.name | titlecase}} {{profile.lastName | titlecase}}</p>
+                <p>{{profile.title |titlecase}}</p>
+                <button *ngIf="isEditable" (click)="openBasicProfileForm()"
+                    class="profile-basic-details-edit edit-button"><mat-icon>edit</mat-icon></button>
+            </div>
         </div>
+        <div class="profile-description-container">
+            <button *ngIf="isEditable" (click)="openDescriptionForm()"
+                class="description-edit edit-button"><mat-icon>edit</mat-icon></button>
+            <p>{{profile.description}}</p>
 
-        <div class="profile-container-container">
-            <div class="profile-details-container">
-                <div class="profile-picture-container">
-                    <img [src]="profile.picture ? profile.picture.url : '/assets/no-image.png' " class="profile-image"
-                        alt="image">
-                    <input id="profile-picture-input" type="file" accept="image/jpeg, image/png"
-                        (change)="uploadProfilePicture($event)" style="display: none;">
-                    <label class="profile-picture-edit edit-button"
-                        for="profile-picture-input"><mat-icon>edit</mat-icon></label>
-                </div>
-                <div class="profile-basic-details-container">
-                    <p>{{profile.name | titlecase}} {{profile.lastName | titlecase}}</p>
-                    <p>{{profile.title |titlecase}}</p>
-                    <button (click)="openBasicProfileForm()"
-                        class="profile-basic-details-edit edit-button"><mat-icon>edit</mat-icon></button>
-                </div>
-            </div>
-            <div class="profile-description-container">
-                <button (click)="openDescriptionForm()"
-                    class="description-edit edit-button"><mat-icon>edit</mat-icon></button>
-                <p>{{profile.description}}</p>
-
-            </div>
         </div>
     </div>
-</ng-container>
+</div>
 
 <app-modal *ngIf="showDescriptionForm" (click)="closeDescriptionForm()">
     <app-dynamic-form (click)="$event.stopPropagation()" [questions]="profileDescriptionQuestions"

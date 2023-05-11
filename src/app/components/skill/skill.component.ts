@@ -9,6 +9,7 @@ import { skillQuestions } from 'src/assets/project-forms';
   styleUrls: ['./skill.component.css']
 })
 export class SkillComponent {
+  @Input() isEditable: boolean = false
   @Input() skill!: Skill
   @Output() deleted: EventEmitter<void> = new EventEmitter()
   @Output() updated: EventEmitter<Skill> = new EventEmitter()

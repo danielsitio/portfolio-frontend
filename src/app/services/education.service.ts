@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Education, EducationForm } from '../model/education';
 import { Observable } from 'rxjs';
-import { httpRequestStates, HttpRequestState } from 'ngx-http-request-state';
 
 @Injectable({
   providedIn: 'root'

@@ -9,6 +9,9 @@ import { experienceQuestions } from 'src/assets/project-forms';
   styleUrls: ['./experience.component.css']
 })
 export class ExperienceComponent implements OnInit {
+
+  @Input() isEditable: boolean = false
+
   isBeingDeleted: boolean = false
 
   questions = experienceQuestions

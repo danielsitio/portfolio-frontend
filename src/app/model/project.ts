@@ -1,4 +1,5 @@
 import { HalResource } from "./hal"
+import { Image } from "./image"
 
 export type Project = {
     id: number
@@ -6,13 +7,14 @@ export type Project = {
     description: string
     realizationDate: string
     link?: string
+    portrait: Image
 }
 export type ProjectForm = {
     name: string
     description: string
     realizationDate: string
     link?: string
-    image?: File
+    portrait?: File
 }
 
 export type HalProject = Project & HalResource

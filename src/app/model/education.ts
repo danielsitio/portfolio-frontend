@@ -1,14 +1,15 @@
+import { Institute } from "./institute"
+
 export type Education = {
     id: number
-    institute: string,
     title: string,
     startDate: string,
     finishDate: string,
-    logo?: string
+    school: Institute
 }
 
 export type EducationForm = {
-    institute: string,
+    school: string,
     title: string,
     startDate: string,
     finishDate: string,

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Education } from 'src/app/model/education';
+import { Education, EducationForm } from 'src/app/model/education';
 import { EducationService } from 'src/app/services/education.service';
 import { newEducationQuestions } from 'src/assets/project-forms';
 
@@ -49,8 +49,8 @@ export class EducationComponent implements OnInit {
     this.markAsBeingDeleted()
     this.educationService.deleteEducation(this.education!.id).subscribe((this.emitDeletedEvent))
   }
-  edit = (partialEducation: Partial<Education>) => {
-    this.educationService.modifyEducation(this.education!.id, partialEducation).subscribe(this.closeFormAndEmitUpdated)
+  edit = (educationForm: EducationForm) => {
+    this.educationService.modifyEducation(this.education!.id, educationForm).subscribe(this.closeFormAndEmitUpdated)
   }
 
 }

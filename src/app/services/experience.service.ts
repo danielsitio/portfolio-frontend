@@ -13,10 +13,8 @@ export class ExperienceService {
   constructor(private http: HttpClient) { }
 
   post = (experienceForm: ExperienceForm): Observable<Experience> => {
-
     const formData = new FormData()
     if (experienceForm.logo) formData.append("workplaceLogo", experienceForm.logo)
-
     let experience: Partial<Experience> = { ...experienceForm, workplace: { name: experienceForm.institute, logo: undefined } }
     formData.append("experience", new Blob([JSON.stringify(experience)], { type: "application/json" }))
     return this.http.post<Experience>(this.experienceApi, formData)

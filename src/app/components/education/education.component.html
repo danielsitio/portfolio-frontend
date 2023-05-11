@@ -1,12 +1,12 @@
-<div [ngClass]="{'deleted': isBeingDeleted}" >
+<div [ngClass]="{'deleted': isBeingDeleted}">
     <div style="display: flex; justify-content: right;"><mat-icon (click)="openForm()">edit</mat-icon><mat-icon
             (click)="delete()">close</mat-icon></div>
     <div style="display: flex;">
-        <div><img [src]="education!.logo ? education!.logo : '/assets/no-image.png'" alt="image"
+        <div><img [src]="education.school.logo ? education.school.logo.url : '/assets/no-image.png'" alt="image"
                 style="width: 4rem;aspect-ratio: 1/1;">
         </div>
         <div>
-            <p>{{education!.institute}} {{education!.startDate | date}} - {{education!.finishDate |date}}</p>
+            <p>{{education!.school.name}} {{education!.startDate | date}} - {{education!.finishDate |date}}</p>
             <p>{{education!.title}}</p>
         </div>
     </div>

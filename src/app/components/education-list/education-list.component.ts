@@ -31,8 +31,8 @@ export class EducationListComponent implements OnInit {
   openEducationForm = () => this.showEducationForm = true
   closeEducationForm = () => this.showEducationForm = false
 
-  addEducation = (newEducation: EducationForm) => {
-    this.educationService.addEducation(newEducation).subscribe(education => {
+  addEducation = (educationForm: EducationForm) => {
+    this.educationService.addEducation(educationForm).subscribe(education => {
       this.educations = [...this.educations!, education]
       this.closeEducationForm()
     })

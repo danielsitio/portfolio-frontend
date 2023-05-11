@@ -12,16 +12,23 @@ export class EducationService {
   private educationApi = `${environment.apiUrl}/educations`
   constructor(private http: HttpClient) { }
 
-  addEducation = (newEducation: EducationForm): Observable<Education> => {
+  addEducation = (educationForm: EducationForm): Observable<Education> => {
     const formData = new FormData()
-    if (newEducation.logo) formData.append("logo", newEducation.logo)
-    formData.append("education", new Blob([JSON.stringify(newEducation as Education)], { type: "application/json" }))
+    if (educationForm.logo) formData.append("schoolLogo", educationForm.logo)
+    let education: Partial<Education> = { ...educationForm, school: { name: educationForm.school, logo: undefined } }
+    formData.append("education", new Blob([JSON.stringify(education)], { type: "application/json" }))
     return this.http.post<Education>(this.educationApi, formData)
   }
   getEducations = (): Observable<Education[]> => this.http.get<Education[]>(this.educationApi)
 
   deleteEducation = (id: number) => this.http.delete(`${this.educationApi}/${id}`)
 
-  modifyEducation = (id: number, partialEducation: Partial<Education>): Observable<Education> => this.http.patch<Education>(`${this.educationApi}/${id}`, partialEducation)
+  modifyEducation = (id: number, educationForm: EducationForm): Observable<Education> => {
+    const formData = new FormData()
+    if (educationForm.logo) formData.append("updatedSchoolLogo", educationForm.logo)
+    let education: Partial<Education> = { ...educationForm, school: { name: educationForm.school, logo: undefined } }
+    formData.append("updatedEducation", new Blob([JSON.stringify(education)], { type: "application/json" }))
+    return this.http.patch<Education>(`${this.educationApi}/${id}`, formData)
+  }
 
 }

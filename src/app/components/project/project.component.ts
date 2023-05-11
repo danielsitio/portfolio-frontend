@@ -28,9 +28,9 @@ export class ProjectComponent implements OnInit {
     /* this.questions = this.questions.map(question => {
       return ({ ...question, value: question.key in this.project ? (this.project as any)[question.key] : null })
     } */
-    this.questions = this.questions.map(question => {
+    /* this.questions = this.questions.map(question => {
       return { ...question, value: question.key in this.project ? (this.project as any)[question.key] : null }
-    })
+    }) */
   }
 
   closeForm = () => this.showForm = false
@@ -50,7 +50,7 @@ export class ProjectComponent implements OnInit {
     this.markAsBeingDeleted()
     this.projectService.delete(this.project.id).subscribe((this.emitDeletedEvent))
   }
-  edit = (partialEducation: Partial<ProjectForm>) => {
-    this.projectService.patch(this.project.id, partialEducation).subscribe(this.closeFormAndEmitUpdated)
+  edit = (projectForm: ProjectForm) => {
+    this.projectService.patch(this.project.id, projectForm).subscribe(this.closeFormAndEmitUpdated)
   }
 }

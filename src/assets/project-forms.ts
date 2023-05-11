@@ -33,7 +33,7 @@ export const newProjectQuestions: Question[] = [
         type: InputType.TEXT
     },
     {
-        key: "image",
+        key: "portrait",
         label: "Imagen",
         required: false,
         order: 5,
@@ -79,9 +79,9 @@ export const profileDescriptionQuestions: Question[] = [
 ]
 export const newEducationQuestions: Question[] = [
     {
-        key: "institute",
+        key: "school",
         value: "",
-        label: "Instituto",
+        label: "Escuela",
         required: true,
         order: 1,
         type: InputType.TEXT

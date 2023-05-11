@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Experience, ExperienceForm } from 'src/app/model/experience';
 import { ExperienceService } from 'src/app/services/experience.service';
 import { experienceQuestions } from 'src/assets/project-forms';
@@ -8,7 +8,7 @@ import { experienceQuestions } from 'src/assets/project-forms';
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css']
 })
-export class ExperienceComponent {
+export class ExperienceComponent implements OnInit {
   isBeingDeleted: boolean = false
 
   questions = experienceQuestions
@@ -20,6 +20,17 @@ export class ExperienceComponent {
   showForm: boolean = false
 
   constructor(private experienceService: ExperienceService) { }
+
+  ngOnInit(): void {
+    this.populateQuestions()
+  }
+  populateQuestions = () => {
+    let { workplace, position, description, startDate, finishDate } = this.experience
+    let arrayCurrentValues: string[] = [workplace.name, position, description, startDate, finishDate]
+    this.questions = this.questions.map((question, index) => {
+      return { ...question, value: arrayCurrentValues[index] ? arrayCurrentValues[index] : undefined }
+    })
+  }
 
   closeForm = () => this.showForm = false
   openForm = () => this.showForm = true
@@ -36,9 +47,9 @@ export class ExperienceComponent {
 
   delete = () => {
     this.markAsBeingDeleted()
-    this.experienceService.delete(this.experience!.id).subscribe((this.emitDeletedEvent))
+    this.experienceService.delete(this.experience.id).subscribe((this.emitDeletedEvent))
   }
-  edit = (partialEducation: Partial<Experience>) => {
-    this.experienceService.update(this.experience!.id, partialEducation).subscribe(this.closeFormAndEmitUpdated)
+  edit = (experienceForm: ExperienceForm) => {
+    this.experienceService.update(this.experience.id, experienceForm).subscribe(this.closeFormAndEmitUpdated)
   }
 }

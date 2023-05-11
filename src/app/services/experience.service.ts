@@ -25,9 +25,12 @@ export class ExperienceService {
 
   delete = (id: number) => this.http.delete(`${this.experienceApi}/${id}`)
 
-  update = (id: number, partialExperience: Partial<Experience>): Observable<Experience> => {
-
-    return this.http.patch<Experience>(`${this.experienceApi}/${id}`, partialExperience)
+  update = (id: number, experienceForm: ExperienceForm): Observable<Experience> => {
+    const formData = new FormData()
+    if (experienceForm.logo) formData.append("updatedWorkplaceLogo", experienceForm.logo)
+    let experience: Partial<Experience> = { ...experienceForm, workplace: { name: experienceForm.institute, logo: undefined } }
+    formData.append("updatedExperience", new Blob([JSON.stringify(experience)], { type: "application/json" }))
+    return this.http.patch<Experience>(`${this.experienceApi}/${id}`, formData)
   }
 
 }

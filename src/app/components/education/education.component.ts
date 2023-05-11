@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Education } from 'src/app/model/education';
 import { EducationService } from 'src/app/services/education.service';
 import { newEducationQuestions } from 'src/assets/project-forms';
@@ -8,7 +8,7 @@ import { newEducationQuestions } from 'src/assets/project-forms';
   templateUrl: './education.component.html',
   styleUrls: ['./education.component.css']
 })
-export class EducationComponent {
+export class EducationComponent implements OnInit {
 
   isBeingDeleted: boolean = false
 
@@ -21,6 +21,16 @@ export class EducationComponent {
   showForm: boolean = false
 
   constructor(private educationService: EducationService) { }
+  ngOnInit(): void {
+    this.populateQuestions()
+  }
+  populateQuestions = () => {
+    /*  let { workplace, position, description, startDate, finishDate } = this.education
+     let arrayCurrentValues: string[] = [workplace.name, position, description, startDate, finishDate]
+     this.questions = this.questions.map((question, index) => {
+       return { ...question, value: arrayCurrentValues[index] ? arrayCurrentValues[index] : undefined }
+     }) */
+  }
 
   closeForm = () => this.showForm = false
   openForm = () => this.showForm = true

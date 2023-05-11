@@ -25,9 +25,12 @@ export class ProjectComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    /* this.editProjectQuestions = this.editProjectQuestions.map(question => {
-      return { ...question, value: question.key in this.project ? (this.project as any)[question.key] : "" }
-    }) */
+    /* this.questions = this.questions.map(question => {
+      return ({ ...question, value: question.key in this.project ? (this.project as any)[question.key] : null })
+    } */
+    this.questions = this.questions.map(question => {
+      return { ...question, value: question.key in this.project ? (this.project as any)[question.key] : null }
+    })
   }
 
   closeForm = () => this.showForm = false

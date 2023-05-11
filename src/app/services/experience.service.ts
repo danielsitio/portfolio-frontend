@@ -12,16 +12,22 @@ export class ExperienceService {
   private experienceApi = `${environment.apiUrl}/experiences`
   constructor(private http: HttpClient) { }
 
-  post = (newExperience: ExperienceForm): Observable<Experience> => {
+  post = (experienceForm: ExperienceForm): Observable<Experience> => {
+
     const formData = new FormData()
-    if (newExperience.logo) formData.append("logo", newExperience.logo)
-    formData.append("experience", new Blob([JSON.stringify(newExperience as Experience)], { type: "application/json" }))
+    if (experienceForm.logo) formData.append("workplaceLogo", experienceForm.logo)
+
+    let experience: Partial<Experience> = { ...experienceForm, workplace: { name: experienceForm.institute, logo: undefined } }
+    formData.append("experience", new Blob([JSON.stringify(experience)], { type: "application/json" }))
     return this.http.post<Experience>(this.experienceApi, formData)
   }
   getAll = (): Observable<Experience[]> => this.http.get<Experience[]>(this.experienceApi)
 
   delete = (id: number) => this.http.delete(`${this.experienceApi}/${id}`)
 
-  update = (id: number, partialExperience: Partial<Experience>): Observable<Experience> => this.http.patch<Experience>(`${this.experienceApi}/${id}`, partialExperience)
+  update = (id: number, partialExperience: Partial<Experience>): Observable<Experience> => {
+
+    return this.http.patch<Experience>(`${this.experienceApi}/${id}`, partialExperience)
+  }
 
 }

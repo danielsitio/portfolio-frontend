@@ -136,11 +136,19 @@ export const skillQuestions: Question[] = [
 ]
 export const experienceQuestions: Question[] = [
     {
+        key: "institute",
+        value: "",
+        label: "Empresa",
+        required: true,
+        order: 1,
+        type: InputType.TEXT
+    },
+    {
         key: "position",
         value: "",
         label: "Puesto",
         required: true,
-        order: 1,
+        order: 2,
         type: InputType.TEXT
     },
     {
@@ -148,28 +156,28 @@ export const experienceQuestions: Question[] = [
         value: "",
         label: "Descripcion de las tareas",
         required: true,
-        order: 2,
+        order: 3,
         type: InputType.LARGE_TEXT
     },
     {
         key: "startDate",
         label: "Fecha de inicio",
         required: true,
-        order: 3,
+        order: 4,
         type: InputType.DATE
     },
     {
         key: "finishDate",
         label: "Fecha de finalizacion",
         required: true,
-        order: 4,
+        order: 5,
         type: InputType.DATE
     },
     {
         key: "logo",
         label: "Logo",
         required: false,
-        order: 5,
+        order: 6,
         type: InputType.FILE
     }
 ]

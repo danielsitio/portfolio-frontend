@@ -1,8 +1,15 @@
 <div>
     <div><mat-icon (click)="openForm()">edit</mat-icon><mat-icon (click)="delete()">close</mat-icon></div>
+    <div>
+        <h3>Empresa</h3>
+        <p>{{experience.workplace.name}}</p>
+        <img style="width: 50px;height: 50px; object-fit: cover;" *ngIf="experience.workplace.logo"
+            [src]="experience.workplace.logo.url" alt="dsa">
+    </div>
+    <h3>Datos</h3>
     <p>{{experience.position}}</p>
-    <p>{{experience.startDate | date}} - {{experience.finishDate | date}}</p>
     <p>{{experience.description}}</p>
+    <p>{{experience.startDate | date}} - {{experience.finishDate | date}}</p>
 </div>
 
 <app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="edit" [onModalClick]="closeForm"></app-modal-form>

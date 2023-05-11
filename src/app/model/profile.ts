@@ -1,3 +1,5 @@
+import { Image } from "./image"
+
 export type Profile = {
     name: string
     lastName: string
@@ -5,7 +7,4 @@ export type Profile = {
     description: string
     bannerImage?: Image
     picture?: Image
-}
-type Image = {
-    url: string
 }

@@ -1,8 +1,14 @@
 <div class="bar">
     <div (click)="navHome()">logo</div>
-    <button (click)="openForm()">login</button>
+    <ng-container *ngIf="isLoggedIn ;then logoutButton;else loginButton"></ng-container>
 </div>
 
 <app-modal-form *ngIf="showForm" [questions]="questions" [onModalClick]="closeForm" [onSubmit]="login">
 
 </app-modal-form>
+<ng-template #logoutButton>
+    <button (click)="logout()">Logout</button>
+</ng-template>
+<ng-template #loginButton>
+    <button (click)="openForm()">Login</button>
+</ng-template>

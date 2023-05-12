@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { LoginForm } from 'src/app/model/login-form';
 import { AuthService } from 'src/app/services/auth.service';
 import { loginQuestions } from 'src/assets/project-forms';
@@ -9,12 +10,19 @@ import { loginQuestions } from 'src/assets/project-forms';
   templateUrl: './bar.component.html',
   styleUrls: ['./bar.component.css']
 })
-export class BarComponent {
+export class BarComponent implements OnInit {
 
   questions = loginQuestions
   showForm: boolean = false
 
+  isLoggedIn: boolean = false
+
   constructor(private router: Router, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.authService.isLoggedIn.asObservable().subscribe(value => this.isLoggedIn = value)
+  }
+
   openForm = () => this.showForm = true
   closeForm = () => this.showForm = false
 
@@ -22,9 +30,14 @@ export class BarComponent {
 
     this.authService.login(loginForm).subscribe(() => {
       this.closeForm()
+      this.authService.emitLogin()
       this.router.navigate(["edit"])
     })
 
+
+  }
+  logout = () => {
+    this.authService.logout()
   }
 
   navHome = () => this.router.navigate([""])

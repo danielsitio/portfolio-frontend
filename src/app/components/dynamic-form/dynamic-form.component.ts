@@ -30,7 +30,6 @@ export class DynamicFormComponent<T> implements OnInit {
 
   submit() {
     this.payload = this.form.getRawValue() as T
-    console.log(this.payload)
     this.form!.disable()
     this.onSubmit(this.payload)
   }

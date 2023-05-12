@@ -5,5 +5,5 @@ import { catchError, of } from "rxjs";
 
 export const authGuard: CanActivateFn = () => {
     const authService = inject(AuthService)
-    return authService.isLoggedIn();
+    return authService.testIsLoggedIn();
 }

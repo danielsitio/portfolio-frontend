@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EducationService {
-  private educationApi = `${environment.apiUrl}/educations`
+  private educationApi = `${environment.backendUrl}/api/educations`
   constructor(private http: HttpClient) { }
 
   addEducation = (educationForm: EducationForm): Observable<Education> => {

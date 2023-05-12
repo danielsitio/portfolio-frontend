@@ -181,3 +181,20 @@ export const experienceQuestions: Question[] = [
         type: InputType.FILE
     }
 ]
+export const loginQuestions: Question[] = [
+    {
+        key: "username",
+        label: "Usuario",
+        required: true,
+        order: 1,
+        type: InputType.TEXT
+    },
+    {
+        key: "password",
+        label: "Contraseña",
+        required: true,
+        order: 2,
+        type: InputType.TEXT
+    }
+
+]

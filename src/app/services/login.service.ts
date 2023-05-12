@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login = (credentials: Credentials) => this.http.post(`${environment.apiUrl}/login`, credentials)
-  logout = () => this.http.post(`${environment.apiUrl}/logout`, {})
+  login = (credentials: Credentials) => this.http.post(`${environment.backendUrl}/login`, credentials)
+  logout = () => this.http.post(`${environment.backendUrl}/logout`, {})
 
 }

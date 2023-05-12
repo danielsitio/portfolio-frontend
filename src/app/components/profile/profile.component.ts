@@ -13,9 +13,7 @@ export class ProfileComponent implements OnInit {
 
   @Input() isEditable: boolean = false
 
-  $profile?: Observable<Profile>
   profile?: Profile
-  pfpRerender: number = 1
 
   profileDescriptionQuestions = profileDescriptionQuestions;
   basicProfileQuestions = basicProfileQuestions;
@@ -55,19 +53,23 @@ export class ProfileComponent implements OnInit {
 
   uploadBannerImage({ target }: Event) {
     const file: File = (<HTMLInputElement>target).files![0]
-    this.bannerImageIsLoading = true
-    this.profileService.uploadBannerImage(file).subscribe(url => {
-      this.profile!.banner!.url = this.profile!.banner?.url + "?" + new Date().getTime()
-      this.bannerImageIsLoading = false
-    })
+    if (file) {
+      this.bannerImageIsLoading = true
+      this.profileService.uploadBannerImage(file).subscribe(url => {
+        this.profile!.banner!.url = this.profile!.banner?.url + "?" + new Date().getTime()
+        this.bannerImageIsLoading = false
+      })
+    }
   }
   uploadProfilePicture({ target }: Event) {
     const file: File = (<HTMLInputElement>target).files![0]
-    this.profilePictureIsLoading = true
-    this.profileService.uloadProfilePicture(file).subscribe(url => {
-      this.profile!.picture!.url = url + "?" + new Date().getTime()
-      this.profilePictureIsLoading = false
-    })
+    if (file) {
+      this.profilePictureIsLoading = true
+      this.profileService.uloadProfilePicture(file).subscribe(url => {
+        this.profile!.picture!.url = url + "?" + new Date().getTime()
+        this.profilePictureIsLoading = false
+      })
+    }
   }
 
 }

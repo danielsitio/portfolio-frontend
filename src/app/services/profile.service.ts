@@ -10,7 +10,7 @@ import { Profile } from '../model/profile';
 export class ProfileService {
 
 
-  private apiUrl = environment.apiUrl + "/profile"
+  private apiUrl = environment.backendUrl + "/api/profile"
   constructor(private http: HttpClient) { }
 
   getProfile = (): Observable<Profile> => this.http.get<Profile>(this.apiUrl)

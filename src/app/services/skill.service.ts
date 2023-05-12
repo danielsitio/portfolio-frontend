@@ -10,7 +10,7 @@ import { Skill } from '../model/skill';
 export class SkillService {
 
 
-  skillApi = environment.apiUrl + "/skills"
+  skillApi = environment.backendUrl + "/api/skills"
 
   constructor(private http: HttpClient) { }
 

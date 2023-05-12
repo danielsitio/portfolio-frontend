@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ExperienceService {
 
-  private experienceApi = `${environment.apiUrl}/experiences`
+  private experienceApi = `${environment.backendUrl}/api/experiences`
   constructor(private http: HttpClient) { }
 
   post = (experienceForm: ExperienceForm): Observable<Experience> => {

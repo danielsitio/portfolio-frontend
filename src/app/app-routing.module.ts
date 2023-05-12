@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { EducationComponent } from './components/education/education.component';
-import { EducationListComponent } from './components/education-list/education-list.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { authGuard } from './guards/auth';
 
 const routes: Routes = [
   {
@@ -20,6 +17,7 @@ const routes: Routes = [
     data: {
       isEditable: true
     },
+    canActivate: [authGuard]
   }
 ];
 

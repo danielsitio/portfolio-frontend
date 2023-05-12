@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: "https://danest-backend.up.railway.app/api"
+    backendUrl: "https://danest-backend.up.railway.app"
 };

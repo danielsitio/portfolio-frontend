@@ -9,7 +9,7 @@ import { Observable, map } from 'rxjs';
 })
 export class ProjectService {
 
-  private projectApi = `${environment.apiUrl}/projects`
+  private projectApi = `${environment.backendUrl}/api/projects`
 
 
   constructor(private http: HttpClient) {

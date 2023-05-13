@@ -22,10 +22,10 @@ export class AuthInterceptor implements HttpInterceptor {
         withCredentials: true
       })
       return next.handle(authorizedRequest).pipe(
-        map(algo => algo),
         catchError((err: HttpErrorResponse) => {
-          if (err.status === 403) {
-            this.authService.logout()
+          if (err.status === 403 || err.status === 401) {
+
+            this.authService.logout().subscribe()
           }
           return throwError("")
         })

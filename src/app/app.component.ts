@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProfileService } from './services/profile.service';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  $profilePicture: Observable<string | undefined> | undefined
-
-  constructor(private profileService: ProfileService) { }
-
-
+  constructor(private authService: AuthService) { }
   ngOnInit(): void {
-    this.updateProfilePicture()
+    this.authService.testIsLoggedIn().subscribe()
   }
 
-  updateProfilePicture = () => this.$profilePicture = this.profileService.getProfilePicture()
-
-  uploadProfilePicture({ target }: Event) {
-    const profilePicture: File = (<HTMLInputElement>target).files![0]
-    this.profileService.uloadProfilePicture(profilePicture).subscribe(this.updateProfilePicture)
-
-  }
 
 }

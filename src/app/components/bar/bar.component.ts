@@ -26,19 +26,8 @@ export class BarComponent implements OnInit {
   openForm = () => this.showForm = true
   closeForm = () => this.showForm = false
 
-  login = (loginForm: LoginForm) => {
-
-    this.authService.login(loginForm).subscribe(() => {
-      this.closeForm()
-      this.authService.emitLogin()
-      this.router.navigate(["edit"])
-    })
-
-
-  }
-  logout = () => {
-    this.authService.logout()
-  }
+  login = (loginForm: LoginForm) => this.authService.login(loginForm).subscribe(this.closeForm)
+  logout = () => this.authService.logout().subscribe()
 
   navHome = () => this.router.navigate([""])
 

@@ -8,6 +8,7 @@ import { Question } from 'src/app/model/question';
   styleUrls: ['./modal-form.component.css']
 })
 export class ModalFormComponent<T> {
+  @Input() title?: string
   @Input() questions!: Question[]
   @Input() onModalClick!: () => void
   @Input() onSubmit!: (parameter: T) => void

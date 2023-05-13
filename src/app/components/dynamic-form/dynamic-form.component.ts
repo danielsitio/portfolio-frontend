@@ -9,6 +9,7 @@ import { Question } from 'src/app/model/question';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent<T> implements OnInit {
+  @Input() title?: string
   @Input() disabler?: Observable<boolean>
   @Input() questions: Question[] = []
   @Input() onSubmit!: (parameter: T) => any

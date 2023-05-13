@@ -1,6 +1,6 @@
-<div style="display: flex; justify-content: space-between;" class="">
-    <h1 style="width: fit-content; margin: 0;">Educaciones</h1><mat-icon *ngIf="isEditable"
-        (click)="openEducationForm()">add</mat-icon>
+<div class="mt-16 flex justify-between items-center mb-10">
+    <span class="text-3xl">Education</span>
+    <app-add-button (click)="openEducationForm()" *ngIf="isEditable"></app-add-button>
 </div>
 <ng-container *ngIf="educationsAreLoading;then loading else notLoading ">
 </ng-container>
@@ -17,8 +17,5 @@
 </ng-template>
 
 
-
-<app-modal *ngIf="showEducationForm" (click)="closeEducationForm()">
-    <app-dynamic-form [questions]="newEducationQuestions" [onSubmit]="addEducation"
-        (click)="$event.stopPropagation()"></app-dynamic-form>
-</app-modal>
+<app-modal-form *ngIf="showEducationForm" [title]="'Añadir Educacion'" [questions]="newEducationQuestions"
+    [onSubmit]="addEducation" [onModalClick]="closeEducationForm"></app-modal-form>

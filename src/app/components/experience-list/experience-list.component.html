@@ -2,9 +2,21 @@
     <span class="text-3xl">Experiencias Laborales</span>
     <app-add-button (click)="openForm()" *ngIf="isEditable"></app-add-button>
 </div>
-<app-experience *ngFor=" let experience of experiences" [experience]="experience"
-    (deleted)="deleteExperience(experience)" (updated)="updateExperience($event)"
-    [isEditable]="isEditable"></app-experience>
+
+<ng-container *ngIf="experiencesAreLoading ;then loading else notLoading ">
+</ng-container>
+
+<ng-template #loading>
+    <div>Cargando projectos</div>
+</ng-template>
+
+<ng-template #notLoading>
+    <app-experience *ngFor="let experience of experiences" [experience]="experience"
+        (deleted)="deleteExperience(experience)" (updated)="updateExperience($event)" [isEditable]="isEditable">
+    </app-experience>
+    <div *ngIf="experiences!.length==0">No hay experiencias</div>
+</ng-template>
+
 
 <app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="addExperience"
     [onModalClick]="closeForm"></app-modal-form>

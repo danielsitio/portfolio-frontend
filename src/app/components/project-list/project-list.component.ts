@@ -11,7 +11,7 @@ import { newProjectQuestions } from 'src/assets/project-forms';
 })
 export class ProjectListComponent implements OnInit {
   @Input() isEditable: boolean = false
-  loading: boolean = false
+  projectAreLoading: boolean = false
   projects?: Project[]
   questions = newProjectQuestions
   showForm: boolean = false
@@ -22,11 +22,12 @@ export class ProjectListComponent implements OnInit {
     this.markAsLoading()
     this.projectService.getAll().subscribe(projects => {
       this.projects = projects
+      console.log("termino de cargar  projectos...")
       this.markAsNotLoading()
     })
   }
-  markAsLoading = () => this.loading = true
-  markAsNotLoading = () => this.loading = false
+  markAsLoading = () => this.projectAreLoading = true
+  markAsNotLoading = () => this.projectAreLoading = false
 
   openForm = () => this.showForm = true
   closeForm = () => this.showForm = false

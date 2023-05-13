@@ -1,16 +1,21 @@
-<div class="flex items-center justify-between my-10">
-    <span class="text-3xl font">Habilidades</span>
-    <mat-icon (click)="openForm()" *ngIf="isEditable">add</mat-icon>
+<div class="mt-16 flex justify-between items-center mb-10">
+    <span class="text-3xl">Habilidades</span>
+    <app-add-button (click)="openForm()" *ngIf="isEditable"></app-add-button>
 </div>
-<ul class="flex justify-around">
 
+<ng-container *ngIf="skillsAreLoading ;then loading else notLoading ">
+</ng-container>
 
-    <li app-skill *ngFor="let skill of skills;let i = index" [skill]="skill" (updated)="updateSkill($event)"
-        (deleted)="deleteSkill(skill)" [isEditable]="isEditable"></li>
+<ng-template #loading>
+    <div>Cargando projectos</div>
+</ng-template>
 
-
-
-</ul>
+<ng-template #notLoading>
+    <div app-skill *ngFor="let skill of skills" [skill]="skill" (deleted)="deleteSkill(skill)"
+        (updated)="updateSkill($event)" [isEditable]="isEditable">
+    </div>
+    <div *ngIf="skills!.length==0">No hay habilidades</div>
+</ng-template>
 
 <app-modal-form *ngIf="showSkillForm" [questions]="skillQuestions" [onModalClick]="closeForm"
     [onSubmit]="addSkill"></app-modal-form>

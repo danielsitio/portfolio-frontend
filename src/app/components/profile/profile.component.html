@@ -1,35 +1,37 @@
 <div *ngIf="profile;else loader" class="profile-container">
-    <div class="outline h-fit relative" [ngClass]="{'pointer-events-none blur-sm': bannerImageIsLoading}">
+    <div class="h-fit relative" [ngClass]="{'pointer-events-none blur-sm': bannerImageIsLoading}">
 
         <img [src]="profile.banner ? profile.banner.url : '/assets/no-image.png'" alt="image"
             class="object-cover h-80 w-full">
 
         <input id="banner-input" type="file" accept="image/jpeg, image/png" (change)="uploadBannerImage($event)"
             style="display: none;">
-        <label *ngIf="isEditable" class="banner-edit edit-button" for="banner-input"><mat-icon>edit</mat-icon></label>
+        <label *ngIf="isEditable" class="absolute top-1 right-1" for="banner-input">
+            <app-edit-button></app-edit-button>
+        </label>
 
     </div>
 
-    <div class="profile-container-container">
-        <div class="profile-details-container">
-            <div class="profile-picture-container" [ngClass]="{'pointer-events-none blur-sm': profilePictureIsLoading}">
-                <img [src]="profile.picture?.url" class="profile-image" alt="image">
+    <div class="flex gap-5">
+        <div class="-mt-16 px-6">
+            <div class="profile-picture-container relative"
+                [ngClass]="{'pointer-events-none blur-sm': profilePictureIsLoading}">
+                <img [src]="profile.picture?.url" class="aspect-square rounded-full w-40 object-cover" alt="image">
                 <input id="profile-picture-input" type="file" accept="image/jpeg, image/png"
                     (change)="uploadProfilePicture($event)" style="display: none;">
-                <label *ngIf="isEditable" class="profile-picture-edit edit-button"
-                    for="profile-picture-input"><mat-icon>edit</mat-icon></label>
+                <label *ngIf="isEditable" class="absolute top-0 right-0 left-0 bottom-0 m-auto"
+                    for="profile-picture-input"><app-edit-button></app-edit-button></label>
             </div>
-            <div class="profile-basic-details-container">
-                <p>{{profile.name | titlecase}} {{profile.lastName | titlecase}}</p>
-                <p>{{profile.title |titlecase}}</p>
-                <button *ngIf="isEditable" (click)="openBasicProfileForm()"
-                    class="profile-basic-details-edit edit-button"><mat-icon>edit</mat-icon></button>
+            <div class="text-sm flex flex-col items-center relative pt-5 ">
+                <app-edit-button *ngIf="isEditable" (click)="openBasicProfileForm()"></app-edit-button>
+                <span class="font-medium">{{profile.name | titlecase}} {{profile.lastName | titlecase}}</span>
+                <span class="font-medium whitespace-nowrap">{{profile.title |titlecase}}</span>
             </div>
+
         </div>
-        <div class="profile-description-container">
-            <button *ngIf="isEditable" (click)="openDescriptionForm()"
-                class="description-edit edit-button"><mat-icon>edit</mat-icon></button>
-            <p>{{profile.description}}</p>
+        <div class="w-full">
+            <app-edit-button *ngIf="isEditable" (click)="openDescriptionForm()"></app-edit-button>
+            <p class="text-sm">{{profile.description}}</p>
 
         </div>
     </div>

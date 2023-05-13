@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Question } from 'src/app/model/question';
 
 @Component({
@@ -8,7 +9,7 @@ import { Question } from 'src/app/model/question';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent<T> implements OnInit {
-
+  @Input() disabler?: Observable<boolean>
   @Input() questions: Question[] = []
   @Input() onSubmit!: (parameter: T) => any
   payload?: T
@@ -26,11 +27,11 @@ export class DynamicFormComponent<T> implements OnInit {
       group[key] = newFormControl
     })
     this.form = new FormGroup(group)
+    this.disabler?.subscribe(shouldDisable => shouldDisable ? this.form.disable() : this.form.enable())
   }
 
   submit() {
     this.payload = this.form.getRawValue() as T
-    this.form!.disable()
     this.onSubmit(this.payload)
   }
 

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Question } from 'src/app/model/question';
 
 @Component({
@@ -10,4 +11,5 @@ export class ModalFormComponent<T> {
   @Input() questions!: Question[]
   @Input() onModalClick!: () => void
   @Input() onSubmit!: (parameter: T) => void
+  @Input() disabler?: Observable<boolean>
 }

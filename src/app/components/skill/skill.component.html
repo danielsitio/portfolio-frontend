@@ -1,7 +1,10 @@
-<div>
-    <p><mat-icon (click)="openForm()">edit</mat-icon><mat-icon (click)="delete()">close</mat-icon></p>
-    <p>{{skill.name}}</p>
-    <p>{{skill.level}}</p>
+<div *ngIf="isEditable" class="w-fit ml-auto h-fit mt-auto">
+    <mat-icon (click)=" openForm()">edit</mat-icon><mat-icon (click)="delete()">close</mat-icon>
+</div>
+<div class="flex flex-col items-center w-fit">
+    <p class="font-semibold text-xl">{{skill.name}}</p>
+    <mat-progress-spinner [diameter]="140" [value]="skill.level" [mode]="'determinate'">
+    </mat-progress-spinner>
 </div>
 
 <app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="update"

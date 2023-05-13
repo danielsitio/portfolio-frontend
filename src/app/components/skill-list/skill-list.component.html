@@ -1,7 +1,16 @@
-<h1>Habilidades</h1>
-<mat-icon (click)="openForm()" *ngIf="isEditable">add</mat-icon>
-<div *ngFor="let skill of skills">
-    <app-skill [skill]="skill" (updated)="updateSkill($event)" (deleted)="deleteSkill(skill)"></app-skill>
+<div class="flex items-center justify-between my-10">
+    <span class="text-3xl font">Habilidades</span>
+    <mat-icon (click)="openForm()" *ngIf="isEditable">add</mat-icon>
 </div>
+<ul class="flex justify-around">
+
+
+    <li app-skill *ngFor="let skill of skills;let i = index" [skill]="skill" (updated)="updateSkill($event)"
+        (deleted)="deleteSkill(skill)" [isEditable]="isEditable"></li>
+
+
+
+</ul>
+
 <app-modal-form *ngIf="showSkillForm" [questions]="skillQuestions" [onModalClick]="closeForm"
     [onSubmit]="addSkill"></app-modal-form>

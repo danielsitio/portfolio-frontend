@@ -27,6 +27,10 @@ import { ExperienceComponent } from './components/experience/experience.componen
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { BarComponent } from './components/bar/bar.component'
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ToastrModule } from "ngx-toastr";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
+import { AddButtonComponent } from './components/add-button/add-button.component';
 
 
 
@@ -51,6 +55,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ExperienceComponent,
     MainPageComponent,
     BarComponent,
+    DeleteButtonComponent,
+    AddButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +66,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule,
     NgLetModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    ToastrModule.forRoot(),
+    MatProgressSpinnerModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

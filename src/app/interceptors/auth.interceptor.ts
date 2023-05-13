@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
       })
       return next.handle(authorizedRequest).pipe(
         catchError((err: HttpErrorResponse) => {
-          if (err.status === 403 || err.status === 401) {
+          if (err.status === 403 || err.status === 401 && !request.url.includes("login")) {
 
             this.authService.logout().subscribe()
           }

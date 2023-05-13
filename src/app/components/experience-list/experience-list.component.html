@@ -1,7 +1,10 @@
-<h1>Experiencias Laborales</h1>
-<mat-icon (click)="openForm()" *ngIf="isEditable">add</mat-icon>
+<div class="mt-16 flex justify-between items-center mb-10">
+    <span class="text-3xl">Experiencias Laborales</span>
+    <app-add-button (click)="openForm()" *ngIf="isEditable"></app-add-button>
+</div>
 <app-experience *ngFor=" let experience of experiences" [experience]="experience"
-    (deleted)="deleteExperience(experience)" (updated)="updateExperience($event)"></app-experience>
+    (deleted)="deleteExperience(experience)" (updated)="updateExperience($event)"
+    [isEditable]="isEditable"></app-experience>
 
 <app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="addExperience"
     [onModalClick]="closeForm"></app-modal-form>

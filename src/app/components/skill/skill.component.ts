@@ -4,7 +4,7 @@ import { SkillService } from 'src/app/services/skill.service';
 import { skillQuestions } from 'src/assets/project-forms';
 
 @Component({
-  selector: 'app-skill',
+  selector: '[app-skill]',
   templateUrl: './skill.component.html',
   styleUrls: ['./skill.component.css']
 })

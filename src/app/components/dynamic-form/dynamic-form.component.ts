@@ -15,6 +15,7 @@ export class DynamicFormComponent<T> implements OnInit {
   @Input() onSubmit!: (parameter: T) => any
   payload?: T
   form!: FormGroup
+  shouldDisable!: boolean
 
   @Input() disabled: boolean = false
 
@@ -28,10 +29,12 @@ export class DynamicFormComponent<T> implements OnInit {
       group[key] = newFormControl
     })
     this.form = new FormGroup(group)
-    this.disabler?.subscribe(shouldDisable => shouldDisable ? this.form.disable() : this.form.enable())
+    this.disabler?.subscribe(value => this.shouldDisable = value)
   }
 
   submit() {
+    if (!this.disabler)
+      this.shouldDisable = true
     this.payload = this.form.getRawValue() as T
     this.onSubmit(this.payload)
   }

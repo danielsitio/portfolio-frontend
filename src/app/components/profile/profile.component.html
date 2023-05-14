@@ -19,7 +19,7 @@
                 <img [src]="profile.picture?.url" class="aspect-square rounded-full w-40 object-cover" alt="image">
                 <input id="profile-picture-input" type="file" accept="image/jpeg, image/png"
                     (change)="uploadProfilePicture($event)" style="display: none;">
-                <label *ngIf="isEditable" class="absolute top-0 right-0 left-0 bottom-0 m-auto"
+                <label *ngIf="isEditable" class="absolute top-0 right-0 left-0 bottom-0 m-auto w-fit h-fit"
                     for="profile-picture-input"><app-edit-button></app-edit-button></label>
             </div>
             <div class="text-sm flex flex-col items-center relative pt-5 ">

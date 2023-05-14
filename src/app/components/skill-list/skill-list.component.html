@@ -14,7 +14,7 @@
     <div app-skill *ngFor="let skill of skills" [skill]="skill" (deleted)="deleteSkill(skill)"
         (updated)="updateSkill($event)" [isEditable]="isEditable">
     </div>
-    <div *ngIf="skills!.length==0">No hay habilidades</div>
+    <div *ngIf="skills!.length==0" class="text-base text-gray-400">No hay nada que mostrar</div>
 </ng-template>
 
 <app-modal-form *ngIf="showSkillForm" [questions]="skillQuestions" [onModalClick]="closeForm"

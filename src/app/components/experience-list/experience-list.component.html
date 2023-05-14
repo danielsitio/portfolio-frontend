@@ -14,7 +14,7 @@
     <app-experience *ngFor="let experience of experiences" [experience]="experience"
         (deleted)="deleteExperience(experience)" (updated)="updateExperience($event)" [isEditable]="isEditable">
     </app-experience>
-    <div *ngIf="experiences!.length==0">No hay experiencias</div>
+    <div *ngIf="experiences!.length==0" class="text-base text-gray-400">No hay nada que mostrar</div>
 </ng-template>
 
 

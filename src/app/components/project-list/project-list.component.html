@@ -13,7 +13,7 @@
     <app-project *ngFor="let project of projects" [project]="project" (deleted)="delete(project)"
         (updated)="update($event)" [isEditable]="isEditable">
     </app-project>
-    <div *ngIf="projects!.length==0">No hay proyectos</div>
+    <div *ngIf="projects!.length==0" class="text-base text-gray-400">No hay nada que mostrar</div>
 </ng-template>
 
 <app-modal-form *ngIf="showForm" [title]="'Añadir Proyecto'" [questions]="questions" [onSubmit]="add"

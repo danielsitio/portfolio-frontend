@@ -1,6 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="submit()" class="form">
-    <p *ngIf="title">{{title}}</p>
+<form [formGroup]="form" (ngSubmit)="submit()" class="px-5 py-3 bg-white rounded-2xl">
+    <p *ngIf="title" class="text-lg font-medium">{{title}}</p>
     <app-dynamic-form-question *ngFor="let question of questions" [form]="form"
         [question]="question"></app-dynamic-form-question>
-    <button type="submit" [disabled]="!form.valid">Guardar</button>
+    <button class="mt-5 border-green-500 border-2 py-1 px-2 rounded-lg hover:bg-green-500 hover:text-white focus:outline-none focus:bg-green-500 focus:text-white text-green-500 transition-colors 
+        disabled:text-gray-400 disabled:border-gray-400 disabled:pointer-events-none" type="submit"
+        [disabled]="!form.valid || shouldDisable">Enviar</button>
 </form>

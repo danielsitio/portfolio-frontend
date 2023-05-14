@@ -1,12 +1,15 @@
-<div [formGroup]="form">
-    <label [attr.for]="question.key">{{question.label}}</label>
+<div [formGroup]="form" class="relative my-2">
+    <label class="text-xs" [attr.for]="question.key">{{question.label}}</label>
     <br>
     <ng-container [ngSwitch]="question.type">
         <textarea *ngSwitchCase="'textarea'" [formControlName]="question.key" [id]="question.key"
-            style="resize: none;">output</textarea>
+            class="resize-none w-52 outline-black outline-1 outline h-20 focus:outline-green-500 focus:outline-2 rounded-xl text-inherit py-1 px-2">output</textarea>
         <app-file-input *ngSwitchCase="'file'" [formControlName]="question.key" [id]="question.key"></app-file-input>
-        <input *ngSwitchDefault [formControlName]="question.key" [id]="question.key" [type]="question.type">
+        <input class="outline-black outline-1 outline focus:outline-green-500 focus:outline-2 rounded-md py-1 px-2"
+            *ngSwitchDefault [formControlName]="question.key" [id]="question.key" [type]="question.type">
     </ng-container>
 
-    <div *ngIf="!isValid">Se requiere {{question.label}}.</div>
+    <div *ngIf="!isValid" class="absolute top-[95%] left-0 text-red-500 text-[.6rem]">Se requiere {{question.label |
+        lowercase}}.
+    </div>
 </div>

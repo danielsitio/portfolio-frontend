@@ -13,7 +13,7 @@
     <app-education *ngFor="let education of educations" [education]="education" (deleted)="deleteEducation(education)"
         (updated)="updateEducation($event)" [isEditable]="isEditable">
     </app-education>
-    <div *ngIf="educations!.length==0">No hay educaciones</div>
+    <div *ngIf="educations!.length==0" class="text-base text-gray-400">No hay nada que mostrar</div>
 </ng-template>
 
 

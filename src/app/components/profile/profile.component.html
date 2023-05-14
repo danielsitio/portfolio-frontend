@@ -1,4 +1,4 @@
-<div *ngIf="profile;else loader" class="profile-container">
+<div *ngIf="profile ;else loader" class="profile-container">
     <div class="h-fit relative" [ngClass]="{'pointer-events-none blur-sm': bannerImageIsLoading}">
 
         <img [src]="profile.banner ? profile.banner.url : '/assets/no-image.png'" alt="image"
@@ -22,29 +22,28 @@
                 <label *ngIf="isEditable" class="absolute top-0 right-0 left-0 bottom-0 m-auto w-fit h-fit"
                     for="profile-picture-input"><app-edit-button></app-edit-button></label>
             </div>
-            <div class="text-sm flex flex-col items-center relative pt-5 ">
-                <app-edit-button *ngIf="isEditable" (click)="openBasicProfileForm()"></app-edit-button>
+            <div class="text-sm flex flex-col items-center relative pt-5  ">
+                <app-edit-button class="ml-auto" *ngIf="isEditable" (click)="openBasicProfileForm()"></app-edit-button>
                 <span class="font-medium">{{profile.name | titlecase}} {{profile.lastName | titlecase}}</span>
                 <span class="font-medium whitespace-nowrap">{{profile.title |titlecase}}</span>
             </div>
 
         </div>
-        <div class="w-full">
-            <app-edit-button *ngIf="isEditable" (click)="openDescriptionForm()"></app-edit-button>
+        <div class="w-full pt-5">
+            <app-edit-button *ngIf="isEditable" class="ml-auto w-fit block"
+                (click)="openDescriptionForm()"></app-edit-button>
             <p class="text-sm">{{profile.description}}</p>
-
         </div>
     </div>
 </div>
 
-<app-modal *ngIf="showDescriptionForm" (click)="closeDescriptionForm()">
-    <app-dynamic-form (click)="$event.stopPropagation()" [questions]="profileDescriptionQuestions"
-        [onSubmit]="editProfile"></app-dynamic-form>
-</app-modal>
-<app-modal *ngIf="showBasicProfileForm" (click)="closeBasicProfileForm()">
-    <app-dynamic-form (click)="$event.stopPropagation()" [questions]="basicProfileQuestions"
-        [onSubmit]="editProfile"></app-dynamic-form>
-</app-modal>
+
+<app-modal-form *ngIf="showDescriptionForm" [onModalClick]="closeDescriptionForm"
+    [questions]="profileDescriptionQuestions" [onSubmit]="editProfile"
+    [baseObject]="profileDescriptionForm"></app-modal-form>
+<app-modal-form *ngIf="showBasicProfileForm" [onModalClick]="closeBasicProfileForm" [questions]="basicProfileQuestions"
+    [onSubmit]="editProfile" [baseObject]="profileBasicForm"></app-modal-form>
+
 
 <ng-template #loader>
     <p>cargando...</p>

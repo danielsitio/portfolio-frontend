@@ -1,4 +1,4 @@
-<div class="flex rounded-lg gap-11">
+<div class="flex rounded-lg gap-11" [ngClass]="{'pointer-events-none opacity-30': isBeingDeleted}">
 
     <div class="w-full flex">
         <div class="w-40 grid place-content-center">
@@ -19,4 +19,5 @@
     </div>
 </div>
 
-<app-modal-form *ngIf="showForm" [onModalClick]="closeForm" [questions]="questions" [onSubmit]="edit"></app-modal-form>
+<app-modal-form *ngIf="showForm" [onModalClick]="closeForm" [questions]="questions" [onSubmit]="edit"
+    [baseObject]="educationForm"></app-modal-form>

@@ -1,4 +1,4 @@
 <app-modal (click)="onModalClick()">
     <app-dynamic-form [questions]="questions" [onSubmit]="onSubmit" [disabler]="disabler"
-        (click)="$event.stopPropagation()" [title]="title"></app-dynamic-form>
+        (click)="$event.stopPropagation()" [title]="title" [baseObject]="baseObject"></app-dynamic-form>
 </app-modal>

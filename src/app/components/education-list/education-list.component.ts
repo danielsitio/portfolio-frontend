@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Education, EducationForm } from 'src/app/model/education';
 import { EducationService } from 'src/app/services/education.service';
 import { newEducationQuestions } from 'src/assets/project-forms';

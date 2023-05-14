@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { LoginForm } from 'src/app/model/login-form';
@@ -19,7 +20,7 @@ export class BarComponent implements OnInit {
 
   isLoggedIn: boolean = false
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.authService.isLoggedIn.asObservable().subscribe(value => this.isLoggedIn = value)
@@ -37,6 +38,7 @@ export class BarComponent implements OnInit {
       next: this.closeForm,
       error: () => {
         this.enableForm()
+        this._snackBar.open("Usuario o contraseña incorrectos.", undefined, { duration: 3000 })
       }
     })
   }

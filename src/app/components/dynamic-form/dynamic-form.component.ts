@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Question } from 'src/app/model/question';
+import { InputType, Question } from 'src/app/model/question';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -9,6 +9,7 @@ import { Question } from 'src/app/model/question';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent<T> implements OnInit {
+  @Input() baseObject?: T
   @Input() title?: string
   @Input() disabler?: Observable<boolean>
   @Input() questions: Question[] = []
@@ -21,11 +22,13 @@ export class DynamicFormComponent<T> implements OnInit {
 
   ngOnInit(): void {
     const group: any = {}
-    this.questions.forEach(({ key, value, required, maxLenght }) => {
-      let newFormControl = new FormControl(value)
+    this.questions.forEach(({ key, type, value, required, maxLenght, maxNumber, minNumber }) => {
+      let newFormControl = new FormControl(this.baseObject ? (<any>this.baseObject)[key] : value)
+      if (type == InputType.TEXT || type == InputType.LARGE_TEXT) newFormControl.addValidators(Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/))
       if (required) newFormControl.addValidators(Validators.required)
       if (maxLenght) newFormControl.addValidators(Validators.maxLength(maxLenght))
-
+      if (maxNumber) newFormControl.addValidators(Validators.max(maxNumber))
+      if (minNumber) newFormControl.addValidators(Validators.min(minNumber))
       group[key] = newFormControl
     })
     this.form = new FormGroup(group)

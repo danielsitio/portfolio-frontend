@@ -1,11 +1,13 @@
-<div *ngIf="isEditable" class="w-fit ml-auto h-fit mt-auto">
-    <mat-icon (click)=" openForm()">edit</mat-icon><mat-icon (click)="delete()">close</mat-icon>
-</div>
-<div class="flex flex-col items-center w-fit">
-    <p class="font-semibold text-xl">{{skill.name}}</p>
-    <mat-progress-spinner [diameter]="140" [value]="skill.level" [mode]="'determinate'">
-    </mat-progress-spinner>
+<div class="flex mb-5 gap-4" [ngClass]="{'pointer-events-none opacity-30': isBeingDeleted}">
+    <div class="flex flex-col items-center w-80">
+        <p class="text-base ">{{skill.name | titlecase}}</p>
+        <mat-progress-bar [value]="skill.level"></mat-progress-bar>
+    </div>
+    <div *ngIf="isEditable" class="w-fit ml-auto h-fit mt-auto flex flex-col gap-1">
+        <app-edit-button (click)=" openForm()"></app-edit-button>
+        <app-delete-button (click)="delete()"></app-delete-button>
+    </div>
 </div>
 
-<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="update"
-    [onModalClick]="closeForm"></app-modal-form>
+<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="update" [onModalClick]="closeForm"
+    [baseObject]="skill"></app-modal-form>

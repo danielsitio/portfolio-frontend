@@ -31,6 +31,10 @@ import { ToastrModule } from "ngx-toastr";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { DeleteButtonComponent } from './components/delete-button/delete-button.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+
 
 
 
@@ -68,7 +72,9 @@ import { AddButtonComponent } from './components/add-button/add-button.component
     BrowserAnimationsModule,
     MatIconModule,
     ToastrModule.forRoot(),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatProgressBarModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

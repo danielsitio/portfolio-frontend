@@ -17,6 +17,7 @@ export class ProjectComponent implements OnInit {
   questions = newProjectQuestions
 
   @Input() project!: Project
+  projectForm?: ProjectForm
   @Output() deleted: EventEmitter<void> = new EventEmitter()
   @Output() updated: EventEmitter<Project> = new EventEmitter()
 
@@ -26,12 +27,12 @@ export class ProjectComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    /* this.questions = this.questions.map(question => {
-      return ({ ...question, value: question.key in this.project ? (this.project as any)[question.key] : null })
-    } */
-    /* this.questions = this.questions.map(question => {
-      return { ...question, value: question.key in this.project ? (this.project as any)[question.key] : null }
-    }) */
+    this.projectForm = {
+      name: this.project.name,
+      description: this.project.description,
+      realizationDate: this.project.realizationDate,
+      link: this.project.link
+    }
   }
 
   closeForm = () => this.showForm = false

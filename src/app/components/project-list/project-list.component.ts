@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Question } from 'src/app/model/question';
 import { Project, ProjectForm } from 'src/app/model/project';
 import { ProjectService } from 'src/app/services/project.service';
 import { newProjectQuestions } from 'src/assets/project-forms';
@@ -22,7 +21,6 @@ export class ProjectListComponent implements OnInit {
     this.markAsLoading()
     this.projectService.getAll().subscribe(projects => {
       this.projects = projects
-      console.log("termino de cargar  projectos...")
       this.markAsNotLoading()
     })
   }

@@ -17,6 +17,7 @@ export class EducationComponent implements OnInit {
   questions = newEducationQuestions
 
   @Input() education!: Education
+  educationForm?: EducationForm
   @Output() deleted: EventEmitter<void> = new EventEmitter<void>()
   @Output() updated: EventEmitter<Education> = new EventEmitter<Education>()
 
@@ -24,14 +25,12 @@ export class EducationComponent implements OnInit {
 
   constructor(private educationService: EducationService) { }
   ngOnInit(): void {
-    this.populateQuestions()
-  }
-  populateQuestions = () => {
-    /*  let { workplace, position, description, startDate, finishDate } = this.education
-     let arrayCurrentValues: string[] = [workplace.name, position, description, startDate, finishDate]
-     this.questions = this.questions.map((question, index) => {
-       return { ...question, value: arrayCurrentValues[index] ? arrayCurrentValues[index] : undefined }
-     }) */
+    this.educationForm = {
+      title: this.education.title,
+      school: this.education.school.name,
+      finishDate: this.education.finishDate,
+      startDate: this.education.startDate
+    }
   }
 
   closeForm = () => this.showForm = false

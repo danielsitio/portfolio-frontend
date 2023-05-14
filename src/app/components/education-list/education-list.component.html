@@ -1,5 +1,5 @@
 <div class="mt-16 flex justify-between items-center mb-10">
-    <span class="text-3xl">Education</span>
+    <span class="text-3xl">Educación</span>
     <app-add-button (click)="openEducationForm()" *ngIf="isEditable"></app-add-button>
 </div>
 <ng-container *ngIf="educationsAreLoading;then loading else notLoading ">
@@ -17,5 +17,5 @@
 </ng-template>
 
 
-<app-modal-form *ngIf="showEducationForm" [title]="'Añadir Educacion'" [questions]="newEducationQuestions"
+<app-modal-form *ngIf="showEducationForm" [title]="'Añadir educación'" [questions]="newEducationQuestions"
     [onSubmit]="addEducation" [onModalClick]="closeEducationForm"></app-modal-form>

@@ -18,6 +18,9 @@ export class ProfileComponent implements OnInit {
   profileDescriptionQuestions = profileDescriptionQuestions;
   basicProfileQuestions = basicProfileQuestions;
 
+  profileDescriptionForm?: Partial<Profile>
+  profileBasicForm?: Partial<Profile>
+
   profilePictureIsLoading: boolean = false
   bannerImageIsLoading: boolean = false
 
@@ -25,10 +28,24 @@ export class ProfileComponent implements OnInit {
   showBasicProfileForm: boolean = false
 
 
+
+
   constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {
-    this.profileService.getProfile().subscribe(profile => this.profile = profile)
+
+    this.profileService.getProfile().subscribe(profile => {
+      this.profile = profile
+      const { name, lastName, title, description } = profile!
+      this.profileBasicForm = {
+        name,
+        lastName,
+        title
+      }
+      this.profileDescriptionForm = {
+        description
+      }
+    })
   }
 
   openDescriptionForm = () => this.showDescriptionForm = true

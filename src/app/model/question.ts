@@ -3,7 +3,10 @@ export type Question = {
     key: string;
     label: string;
     required: boolean;
+    minLenght?: number
     maxLenght?: number
+    minNumber?: number
+    maxNumber?: number
     order: number;
     type: InputType;
     controlType?: string;

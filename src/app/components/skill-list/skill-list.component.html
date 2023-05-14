@@ -11,11 +11,14 @@
 </ng-template>
 
 <ng-template #notLoading>
-    <div app-skill *ngFor="let skill of skills" [skill]="skill" (deleted)="deleteSkill(skill)"
-        (updated)="updateSkill($event)" [isEditable]="isEditable">
+    <div class="flex w-full items-center flex-col">
+        <div app-skill *ngFor="let skill of skills" [skill]="skill" (deleted)="deleteSkill(skill)"
+            (updated)="updateSkill($event)" [isEditable]="isEditable">
+        </div>
     </div>
+
     <div *ngIf="skills!.length==0" class="text-base text-gray-400">No hay nada que mostrar</div>
 </ng-template>
 
-<app-modal-form *ngIf="showSkillForm" [questions]="skillQuestions" [onModalClick]="closeForm"
-    [onSubmit]="addSkill"></app-modal-form>
+<app-modal-form *ngIf="showSkillForm" [title]="'Añadir habilidad'" [questions]="skillQuestions"
+    [onModalClick]="closeForm" [onSubmit]="addSkill"></app-modal-form>

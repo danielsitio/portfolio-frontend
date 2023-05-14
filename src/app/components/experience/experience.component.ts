@@ -17,6 +17,7 @@ export class ExperienceComponent implements OnInit {
   questions = experienceQuestions
 
   @Input() experience!: Experience
+  experienceForm?: ExperienceForm
   @Output() deleted: EventEmitter<void> = new EventEmitter<void>()
   @Output() updated: EventEmitter<Experience> = new EventEmitter<Experience>()
 
@@ -25,14 +26,17 @@ export class ExperienceComponent implements OnInit {
   constructor(private experienceService: ExperienceService) { }
 
   ngOnInit(): void {
-    this.populateQuestions()
+    const { description, finishDate, position, startDate, workplace } = this.experience
+    this.experienceForm = {
+      position: position,
+      description: description,
+      finishDate: finishDate,
+      startDate: startDate,
+      institute: workplace.name
+    }
   }
   populateQuestions = () => {
-    let { workplace, position, description, startDate, finishDate } = this.experience
-    let arrayCurrentValues: string[] = [workplace.name, position, description, startDate, finishDate]
-    this.questions = this.questions.map((question, index) => {
-      return { ...question, value: arrayCurrentValues[index] ? arrayCurrentValues[index] : undefined }
-    })
+
   }
 
   closeForm = () => this.showForm = false

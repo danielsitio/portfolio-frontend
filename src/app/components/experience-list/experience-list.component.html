@@ -1,5 +1,5 @@
 <div class="mt-16 flex justify-between items-center mb-10">
-    <span class="text-3xl">Experiencias Laborales</span>
+    <span class="text-3xl">Experiencia</span>
     <app-add-button (click)="openForm()" *ngIf="isEditable"></app-add-button>
 </div>
 
@@ -18,5 +18,5 @@
 </ng-template>
 
 
-<app-modal-form *ngIf="showForm" [questions]="questions" [onSubmit]="addExperience"
+<app-modal-form [title]="'Añadir experiencia'" *ngIf="showForm" [questions]="questions" [onSubmit]="addExperience"
     [onModalClick]="closeForm"></app-modal-form>

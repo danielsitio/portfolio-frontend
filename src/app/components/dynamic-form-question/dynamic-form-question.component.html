@@ -7,9 +7,11 @@
         <app-file-input *ngSwitchCase="'file'" [formControlName]="question.key" [id]="question.key"></app-file-input>
         <input class="outline-black outline-1 outline focus:outline-green-500 focus:outline-2 rounded-md py-1 px-2"
             *ngSwitchDefault [formControlName]="question.key" [id]="question.key" [type]="question.type">
+
     </ng-container>
 
-    <div *ngIf="!isValid" class="absolute top-[95%] left-0 text-red-500 text-[.6rem]">Se requiere {{question.label |
+    <div *ngIf="!isValid" class="absolute top-[95%] left-0 text-red-500 text-[.6rem] whitespace-nowrap">Valor invalido.
+        {{question.label |
         lowercase}}.
     </div>
 </div>

@@ -130,6 +130,8 @@ export const skillQuestions: Question[] = [
         key: "level",
         label: "Nivel",
         order: 2,
+        maxNumber: 100,
+        minNumber: 1,
         required: true,
         type: InputType.NUMBER
     }
